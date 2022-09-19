@@ -15,7 +15,7 @@ public class CountryManager : MonoBehaviour
 
     private async Task LoadAllCountriesAsync()
     {
-        //this is temporal
+        
         try
         {
             string path = System.IO.Directory.GetCurrentDirectory() + countriesPath;
