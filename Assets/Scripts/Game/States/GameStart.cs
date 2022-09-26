@@ -6,9 +6,12 @@ public class GameStart : IState
 {
     private GameStatesManager manager;
 
-    public GameStart(GameStatesManager manager)
+    private MisionCreator missionCreator;
+
+    public GameStart(GameStatesManager manager, MisionCreator missionCreator)
     {
         this.manager = manager;
+        this.missionCreator = missionCreator;
     }
 
     public void OnEnter()
@@ -23,7 +26,11 @@ public class GameStart : IState
 
     public void Tick()
     {
-        //Create random mission. Spawn the player on the corresping location
+        //Create random mission
+
+        missionCreator.CreateMissionPath();
+
+        //Spawn the player on the corresping location
         
         //To create a random mission:
         //Set the piece and the path the robber will follow. Create a robber.
@@ -31,6 +38,8 @@ public class GameStart : IState
         //Set the clues
         //Create and distribute the npc's
         //Spawn the player on the museum the piece belongs.
+
+
 
     }
 }

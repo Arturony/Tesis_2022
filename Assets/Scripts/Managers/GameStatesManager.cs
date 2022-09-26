@@ -23,12 +23,17 @@ public class GameStatesManager : MonoBehaviour
     public bool GameLost { get => gameLost; set => gameLost = value; }
     public bool GameWon { get => gameWon; set => gameWon = value; }
 
+
+    private MisionCreator missionCreator;
+
     private void Awake()
     {
         stateMachine = new StateMachine();
 
+        missionCreator = gameObject.GetComponent<MisionCreator>();
+
         //states
-        var gameStart = new GameStart(this);
+        var gameStart = new GameStart(this, missionCreator);
         var travel = new Travel(this);
         var getInformation = new GetInformation(this);
         var showInformation = new ShowInformation(this);
@@ -72,6 +77,8 @@ public class GameStatesManager : MonoBehaviour
         Func<bool> ToTravel() => () => IsGamePaused == false && GettingInfo == false && ShowingInfo == false && Traveling == true && Capturing == false;
         Func<bool> GameOverTransition() => () => IsGamePaused == false && GettingInfo == false && ShowingInfo == false && Traveling == false && Capturing == false && GameLost == true && GameWon == false;
         Func<bool> GameWonTransition() => () => IsGamePaused == false && GettingInfo == false && ShowingInfo == false && Traveling == false && Capturing == false && GameLost == false && GameWon == true;
+
+        
     }
 
     private void OnDisable()

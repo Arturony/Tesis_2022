@@ -11,7 +11,7 @@ public class CountryManager : MonoBehaviour
     [SerializeField]
     private string countriesPath;
 
-    private List<Country> countries;
+    private List<Country> countries = new List<Country>();
 
     private async Task LoadAllCountriesAsync()
     {
@@ -69,6 +69,29 @@ public class CountryManager : MonoBehaviour
         return rta;
     }
 
+    private async Task SaveCountriesAsync()
+    {
+        try
+        {
+            string path = System.IO.Directory.GetCurrentDirectory() + countriesPath;
+            List<Country> tmp = countries;
+            foreach (Country q in tmp)
+            {
+                Debug.Log(q);
+                string text = JsonConvert.SerializeObject(q);
+                Debug.Log(text);
+                using (var sw = new StreamWriter(path + q.name + ".json"))
+                {
+                    await sw.WriteAsync(text);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+        }
+    }
+
     private void OnEnable()
     {
         LoaderManager.loadCountries += LoadAllCountriesEvent;
@@ -77,7 +100,7 @@ public class CountryManager : MonoBehaviour
 
     private void OnDisable()
     {
-        LoaderManager.loadCountries -= LoadAllCountriesEvent;
-        CountryDisplay.getCountryNames -= GetCountryNames;
+        //LoaderManager.loadCountries -= LoadAllCountriesEvent;
+        //CountryDisplay.getCountryNames -= GetCountryNames;
     }
 }
