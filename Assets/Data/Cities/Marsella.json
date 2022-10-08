@@ -1,0 +1,15 @@
+{
+	"name": "Marsella",
+	"description": "Marsella, una ciudad puerto del sur de Francia, ha sido una intersección de inmigracion y comercio desde que los griegos la fundaron alrededor del año 600 ac.",
+	"interestPlaces": [
+		"Puerto Viejo de Marsella",
+		"Notre-Dame de la Garde"
+	],
+	"museums": [
+		"Museo de las civilizaciones de Europa y del Mediterráneo",
+		"Musée des Beaux Arts"
+	],
+	"latitude": 48.864716,
+	"longitude": 2.349014,
+	"id": "Marsella"
+}

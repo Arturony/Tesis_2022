@@ -1,0 +1,15 @@
+{
+	"name": "Bogotá",
+	"description": "Bogotá es la extensa capital en altura de Colombia. La Candelaria, su centro con adoquines, cuenta con sitios coloniales como el Teatro Colón neoclásico y la Iglesia de San Francisco del siglo XVII",
+	"interestPlaces": [
+		"Monserrate",
+		"Plaza de Bolivar"
+	],
+	"museums": [
+		"Museo del Oro",
+		"Museo Nacional de Colombia"
+	],
+	"latitude": 4.624335,
+	"longitude": -74.063644,
+	"id": "Bogotá"
+}

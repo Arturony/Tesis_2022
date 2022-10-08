@@ -1,0 +1,15 @@
+{
+	"name": "Tokio",
+	"description": "Tokio, la ajetreada capital de Japón, mezcla lo ultramoderno y lo tradicional, desde los rascacielos iluminados con neones hasta los templos históricos.",
+	"interestPlaces": [
+		"Sensō-ji",
+		"Tokyo Skytree"
+	],
+	"museums": [
+		"Museo Nacional de Tokio",
+		"Edo-Tokyo Museum"
+	],
+	"latitude": 35.672855,
+	"longitude": 139.817413,
+	"id": "Tokio"
+}

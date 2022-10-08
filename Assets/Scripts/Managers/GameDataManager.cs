@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class GameDataManager : MonoBehaviour
@@ -20,14 +21,34 @@ public class GameDataManager : MonoBehaviour
     }
     #endregion
 
+    [SerializeField]
     private CountryManager countryManager;
-
+    [SerializeField]
     private CityManager cityManager;
-
+    [SerializeField]
     private MuseumManager museumManager;
-
+    [SerializeField]
     private ArtPiecesManager artPiecesManager;
 
+    private bool hasLoaded = false;
+
+    public List<Task> LoadAllAssets()
+    {
+        if (hasLoaded == false)
+        {
+            hasLoaded = true;
+            List<Task> tasks = new List<Task>();
+
+            tasks.Add(countryManager.LoadAllCountriesEvent());
+            tasks.Add(cityManager.LoadAllCitiesEvent());
+            //tasks.Add(museumManager.LoadAllMuseumsEvent());
+            //tasks.Add(artPiecesManager.LoadAllArtPiecesEvent());
+
+            return tasks;
+        }
+        else
+            return null;
+    }
 
     public List<string> GetCountryNames()
     {
@@ -59,12 +80,19 @@ public class GameDataManager : MonoBehaviour
         return museumManager.GetMuseum(name);
     }
 
+    public List<string> GetArtPiecesNames()
+    {
+        return artPiecesManager.GetArtPiecesNames();
+    }
+
+    public ArtPiece GetArtPiece(string name)
+    {
+        return artPiecesManager.GetArtPiece(name);
+    }
+
     private void OnEnable()
     {
-        countryManager = gameObject.GetComponent<CountryManager>();
-        cityManager = gameObject.GetComponent<CityManager>();
-        museumManager = gameObject.GetComponent<MuseumManager>();
-        artPiecesManager = gameObject.GetComponent<ArtPiecesManager>();
+        
     }
 
     private void OnDisable()

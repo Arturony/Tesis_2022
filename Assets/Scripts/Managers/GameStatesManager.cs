@@ -26,14 +26,17 @@ public class GameStatesManager : MonoBehaviour
 
     private MisionCreator missionCreator;
 
+    private GameDataManager gameDataManager;
+
     private void Awake()
     {
         stateMachine = new StateMachine();
 
         missionCreator = gameObject.GetComponent<MisionCreator>();
+        gameDataManager = gameObject.GetComponent<GameDataManager>();
 
         //states
-        var gameStart = new GameStart(this, missionCreator);
+        var gameStart = new GameStart(this, missionCreator, gameDataManager);
         var travel = new Travel(this);
         var getInformation = new GetInformation(this);
         var showInformation = new ShowInformation(this);

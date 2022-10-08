@@ -19,7 +19,15 @@ public class MisionCreator : MonoBehaviour
     [SerializeField]
     private int minCountryStops;
 
+    [SerializeField]
+    private float additionalTime;
+
+    [SerializeField]
+    private float flightSpeed;
+
     private List<string> placesToTravel;
+
+    private List<string> citiesPath;
 
     public void CreateMissionPath()
     {
@@ -35,7 +43,7 @@ public class MisionCreator : MonoBehaviour
 
         List<string> countriesPath = new List<string>();
 
-        List<string> citiesPath = new List<string>();
+        citiesPath = new List<string>();
 
         placesToTravel = new List<string>();
 
@@ -43,7 +51,7 @@ public class MisionCreator : MonoBehaviour
 
         for (int i = 0; i < numberOfCountries; i++)
         {
-            int randomIndice = Random.Range(0, contries.Count);
+            int randomIndice = Random.Range(0, contries.Count-1);
 
             string name = contries[randomIndice];
 
@@ -100,8 +108,40 @@ public class MisionCreator : MonoBehaviour
                 }
             }
         }
-
+        foreach (string s in placesToTravel)
+            Debug.Log(s);
     }
+
+    public double MaxMissionTime()
+    {
+        double time = 0;
+        double dist = 0;
+        LatLng prev = null;
+
+        foreach(string s in citiesPath)
+        {
+            City c = GameDataManager.instance.GetCity(s);
+            //get the city and calculate the distance between the first and the second
+            if (prev == null)
+            {
+                prev = new LatLng(c.latitude, c.longitude);
+            }
+            else
+            {
+                LatLng act = new LatLng(c.latitude, c.longitude);
+                dist += HarvesineDistance.HaversineDistance(prev, act);
+                prev = act;
+            }
+        }
+
+        time = dist / flightSpeed;
+
+        time += additionalTime;
+
+        return time;
+    }
+
+
 
     public List<string> GetPathToFollow()
     {

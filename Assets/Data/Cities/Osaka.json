@@ -1,0 +1,15 @@
+{
+	"name": "Osaka",
+	"description": "Osaka es una gran ciudad portuaria y un centro comercial en la isla de Honshu de Japón. Es famosa por su moderna arquitectura, su vida nocturna y la abundante comida callejera.",
+	"interestPlaces": [
+		"Castillo Osaka",
+		"Acuario de Osaka"
+	],
+	"museums": [
+		"The National Museum of Art, Osaka",
+		"The National Museum of Art, Osaka"
+	],
+	"latitude": 48.864716,
+	"longitude": 2.349014,
+	"id": "Osaka"
+}

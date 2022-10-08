@@ -38,9 +38,9 @@ public class CountryManager : MonoBehaviour
         }
     }
 
-    private void LoadAllCountriesEvent()
+    public Task LoadAllCountriesEvent()
     {
-        LoadAllCountriesAsync();
+        return LoadAllCountriesAsync();
     }
 
     public Country GetCountry(string name)
@@ -94,7 +94,6 @@ public class CountryManager : MonoBehaviour
 
     private void OnEnable()
     {
-        LoaderManager.loadCountries += LoadAllCountriesEvent;
         CountryDisplay.getCountryNames += GetCountryNames;
     }
 

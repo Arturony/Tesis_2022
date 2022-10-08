@@ -134,6 +134,11 @@ GameObject:
   - component: {fileID: 393951903}
   - component: {fileID: 393951904}
   - component: {fileID: 393951905}
+  - component: {fileID: 393951906}
+  - component: {fileID: 393951907}
+  - component: {fileID: 393951908}
+  - component: {fileID: 393951909}
+  - component: {fileID: 393951910}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -182,6 +187,78 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   citiesPath: /Assets/Data/Cities/
+--- !u!114 &393951906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393951902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51c01d2e8eb384f469f1b9553db0ffd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  museumsPath: /Assets/Data/Museums/
+--- !u!114 &393951907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393951902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97e23555f60537e40bfb8e23160769b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxCityStops: 1
+  maxMuseumStops: 2
+  maxPlacesStops: 2
+  minPlacesStops: 1
+  minCountryStops: 1
+  additionalTime: 0
+--- !u!114 &393951908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393951902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e67f823a92fb307418af43c81e54ffbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &393951909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393951902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1249ce05003da44b9fd2e2302171ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countryManager: {fileID: 393951904}
+  cityManager: {fileID: 393951905}
+  museumManager: {fileID: 393951906}
+  artPiecesManager: {fileID: 393951910}
+--- !u!114 &393951910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393951902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 935a7b82eca7117428e3218d46a40802, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  museumsPath: /Assets/Data/Art Pieces/
 --- !u!1 &712835045
 GameObject:
   m_ObjectHideFlags: 0

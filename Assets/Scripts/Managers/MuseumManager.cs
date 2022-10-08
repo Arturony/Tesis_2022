@@ -38,9 +38,9 @@ public class MuseumManager : MonoBehaviour
         }
     }
 
-    private void LoadAllMuseumsEvent()
+    public Task LoadAllMuseumsEvent()
     {
-        LoadAllMuseumsAsync();
+        return LoadAllMuseumsAsync();
     }
 
     public Museum GetMuseum(string name)

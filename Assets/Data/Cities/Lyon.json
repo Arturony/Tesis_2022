@@ -1,0 +1,15 @@
+{
+	"name": "Paris",
+	"description": "Lyon, una ciudad en la región histórica de Ródano-Alpes en Francia, se ubica en la unión de los ríos Ródano y Saona.",
+	"interestPlaces": [
+		"Basílica Notre-Dame de Fourvière",
+		"Parc de la Tête d'Or"
+	],
+	"museums": [
+		"Musée Cinéma et Miniature",
+		"Musée d'art contemporain de Lyon"
+	],
+	"latitude": 48.864716,
+	"longitude": 2.349014,
+	"id": "Paris"
+}

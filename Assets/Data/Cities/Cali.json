@@ -1,0 +1,15 @@
+{
+	"name": "Cali",
+	"description": "Cali es una ciudad colombiana ubicada en el departamento del Valle del Cauca, al suroeste de Bogotá. Es conocida por el baile de la salsa.",
+	"interestPlaces": [
+		"Monumento Cristo Rey",
+		"Iglesia La Ermita"
+	],
+	"museums": [
+		"Museo La Tertulia",
+		"Museo del Oro Calima del Banco de la República"
+	],
+	"latitude": 3.359889,
+	"longitude": -76.638565,
+	"id": "Cali"
+}

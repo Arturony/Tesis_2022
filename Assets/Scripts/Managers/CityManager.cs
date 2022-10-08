@@ -38,9 +38,9 @@ public class CityManager : MonoBehaviour
         }
     }
 
-    private void LoadAllCitiesEvent()
+    public Task LoadAllCitiesEvent()
     {
-        LoadAllCitiesAsync();
+        return LoadAllCitiesAsync();
     }
 
     public City GetCity(string name)
@@ -94,18 +94,11 @@ public class CityManager : MonoBehaviour
 
     private void OnEnable()
     {
-        //LoaderManager.loadCountries += LoadAllCountriesEvent;
-        //CountryDisplay.getCountryNames += GetCountryNames;
-        List<string> tests = new List<string>();
-        tests.Add("Test place 1");
-        tests.Add("Test place 2");
-        cities.Add(new City("Test city", "Test City descrption", tests, tests, 10.03723, -15.372513, "Test city id"));
-        cities.Add(new City("Test city 2", "Test City 2 descrption", tests, tests, 99.03723, -55.372513, "Test city 2 id"));
+        
     }
 
     private void OnDisable()
     {
-        //LoaderManager.loadCountries -= LoadAllCountriesEvent;
-        //CountryDisplay.getCountryNames -= GetCountryNames;
+        
     }
 }

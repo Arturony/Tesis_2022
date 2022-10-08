@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class GameStart : IState
@@ -8,15 +9,22 @@ public class GameStart : IState
 
     private MisionCreator missionCreator;
 
-    public GameStart(GameStatesManager manager, MisionCreator missionCreator)
+    private GameDataManager gameDataManager;
+
+    private List<Task> tasks;
+
+    private bool assetsLoaded = false;
+
+    public GameStart(GameStatesManager manager, MisionCreator missionCreator, GameDataManager gameDataManager)
     {
         this.manager = manager;
         this.missionCreator = missionCreator;
+        this.gameDataManager = gameDataManager;
     }
 
     public void OnEnter()
     {
-
+        tasks = gameDataManager.LoadAllAssets();
     }
 
     public void OnExit()
@@ -26,18 +34,38 @@ public class GameStart : IState
 
     public void Tick()
     {
+        //first check if all resources have been loaded
         //Create random mission
 
-        missionCreator.CreateMissionPath();
+        if(tasks != null && assetsLoaded == false)
+        {
+            int i = 0;
+            foreach(Task t in tasks)
+            {
+                if (t.IsCompleted)
+                    i++;
+            }
+            if (i == tasks.Count)
+            {
+                assetsLoaded = true;
+                //all assets loaded
 
-        //Spawn the player on the corresping location
+                //Spawn the player on the corresping location
+
+                //To create a random mission:
+                //Set a random path to follow
+                //pick a random piece from the starting museum
+                //calculate the time to travel to all the cities plus a small ammout
+                //pick the robber
+                //spawn the npc
+                //pick 
+
+                missionCreator.CreateMissionPath();
+            }
+                
+        }
+
         
-        //To create a random mission:
-        //Set the piece and the path the robber will follow. Create a robber.
-        //Set the next museum and piece to rob.
-        //Set the clues
-        //Create and distribute the npc's
-        //Spawn the player on the museum the piece belongs.
 
 
 
