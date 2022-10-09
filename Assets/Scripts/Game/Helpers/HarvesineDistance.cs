@@ -6,7 +6,7 @@ using UnityEngine;
 public class HarvesineDistance
 {
     //earth's radius in km
-    private double R = 6371;
+    private static double R = 6371;
 
     public static double HaversineDistance(LatLng pos1, LatLng pos2)
     {

@@ -29,6 +29,8 @@ public class MisionCreator : MonoBehaviour
 
     private List<string> citiesPath;
 
+    private double time;
+
     public void CreateMissionPath()
     {
         //first create the path to follow
@@ -112,9 +114,9 @@ public class MisionCreator : MonoBehaviour
             Debug.Log(s);
     }
 
-    public double MaxMissionTime()
+    public void MaxMissionTime()
     {
-        double time = 0;
+        time = 0;
         double dist = 0;
         LatLng prev = null;
 
@@ -137,11 +139,27 @@ public class MisionCreator : MonoBehaviour
         time = dist / flightSpeed;
 
         time += additionalTime;
-
-        return time;
     }
 
+    public void PickArtPiece()
+    {
+        //pick first museum in places to travel and pick a random art piece
+    }
 
+    public void PickRobber()
+    {
+        //pick random robber from list of robbers
+    }
+
+    public void SpawnNpcs()
+    {
+        //iterate through all the places. create between minNpcAmount and maxNpcAmmount.
+        //pick random name and appearance. and random dialogue from the files
+        foreach(string s in placesToTravel)
+        {
+            
+        }
+    }
 
     public List<string> GetPathToFollow()
     {

@@ -29,8 +29,20 @@ public class GameDataManager : MonoBehaviour
     private MuseumManager museumManager;
     [SerializeField]
     private ArtPiecesManager artPiecesManager;
+    [SerializeField]
+    private InterestSiteManager interestSiteManager;
+
+    [SerializeField]
+    private char startingKey;
+    [SerializeField]
+    private char endingKey;
+
+    [SerializeField]
+    private List<string> commands;
 
     private bool hasLoaded = false;
+
+    private Mission currentMission;
 
     public List<Task> LoadAllAssets()
     {
@@ -43,6 +55,7 @@ public class GameDataManager : MonoBehaviour
             tasks.Add(cityManager.LoadAllCitiesEvent());
             //tasks.Add(museumManager.LoadAllMuseumsEvent());
             //tasks.Add(artPiecesManager.LoadAllArtPiecesEvent());
+            //tasks.Add(interestSiteManager.LoadAllSitesEvent());
 
             return tasks;
         }
@@ -88,6 +101,41 @@ public class GameDataManager : MonoBehaviour
     public ArtPiece GetArtPiece(string name)
     {
         return artPiecesManager.GetArtPiece(name);
+    }
+
+    public List<string> GetSitesNames()
+    {
+        return interestSiteManager.GetSiteNames();
+    }
+
+    public InterestSite GetSite(string name)
+    {
+        return interestSiteManager.GetSite(name);
+    }
+
+    public void SetCurrentMission(Mission mission)
+    {
+        this.currentMission = mission;
+    }
+
+    public Mission GetCurrentMission()
+    {
+        return currentMission;
+    }
+
+    public char GetStaringKey()
+    {
+        return startingKey;
+    }
+
+    public char GetEndingKey()
+    {
+        return endingKey;
+    }
+
+    public List<string> GetCommands()
+    {
+        return commands;
     }
 
     private void OnEnable()
