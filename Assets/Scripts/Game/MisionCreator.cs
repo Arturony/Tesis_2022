@@ -155,9 +155,9 @@ public class MisionCreator : MonoBehaviour
     {
         //iterate through all the places. create between minNpcAmount and maxNpcAmmount.
         //pick random name and appearance. and random dialogue from the files
-        foreach(string s in placesToTravel)
+        for(int i = 0; i < placesToTravel.Count; i++)
         {
-            
+
         }
     }
 

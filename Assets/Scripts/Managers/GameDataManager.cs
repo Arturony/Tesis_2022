@@ -31,6 +31,8 @@ public class GameDataManager : MonoBehaviour
     private ArtPiecesManager artPiecesManager;
     [SerializeField]
     private InterestSiteManager interestSiteManager;
+    [SerializeField]
+    private NpcManager npcManager;
 
     [SerializeField]
     private char startingKey;
@@ -56,6 +58,7 @@ public class GameDataManager : MonoBehaviour
             //tasks.Add(museumManager.LoadAllMuseumsEvent());
             //tasks.Add(artPiecesManager.LoadAllArtPiecesEvent());
             //tasks.Add(interestSiteManager.LoadAllSitesEvent());
+            //tasks.Add(npcManager.LoadAllDialoguesEvent());
 
             return tasks;
         }
@@ -136,6 +139,11 @@ public class GameDataManager : MonoBehaviour
     public List<string> GetCommands()
     {
         return commands;
+    }
+
+    public List<string> GetDialogueByTag(string tag)
+    {
+        return npcManager.GetDialogueByTag(tag);
     }
 
     private void OnEnable()

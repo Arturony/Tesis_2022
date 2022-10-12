@@ -22,26 +22,45 @@ public class FriendlyNPC
 
     private string place;
 
-    public FriendlyNPC(NPCType type, Gender gender, string name, List<string> dialogues, string place)
+    private string nextPlace;
+
+    public FriendlyNPC(NPCType type, Gender gender, string name, string place, string nextPlace)
     {
         this.type = type;
         this.gender = gender;
         npcName = name;
-        this.dialogues = dialogues;
+        this.dialogues = new List<string>();
         this.place = place;
+        this.nextPlace = nextPlace;
 
         Dictionary<string, List<string>> commandValue = new Dictionary<string, List<string>>();
 
-        List<string> robberValues = new List<string>();
-
-        //get two random tags for the robber
-
-        List<string> placeValues = new List<string>();
-
-        foreach (string s in dialogues)
+        if(this.type == NPCType.Helpful)
         {
-            //replace the tags with real info
-            TextHelper.ReplaceTags(s,GameDataManager.instance.GetStaringKey(), GameDataManager.instance.GetEndingKey(),commandValue);
+            List<string> robberValues = new List<string>();
+
+            //get four random tags for the robber
+
+            commandValue.Add(GameDataManager.instance.GetCommands()[0], robberValues);
+        }
+
+        string placeToTell = type == NPCType.Helpful ? nextPlace: place; 
+
+        //get two random descriptions of the place according to the type of the npc
+
+        commandValue.Add(GameDataManager.instance.GetCommands()[1], GameDataManager.instance.GetDialogueByTag(type.ToString()+placeToTell));
+
+        //get two country descriptions according to the type of the npc
+
+        commandValue.Add(GameDataManager.instance.GetCommands()[2], GameDataManager.instance.GetDialogueByTag(type.ToString() + placeToTell));
+
+
+        foreach(List<string> list in commandValue.Values)
+        {
+            foreach(string s in list)
+            {
+                dialogues.Add(TextHelper.ReplaceTags(s, GameDataManager.instance.GetStaringKey(), GameDataManager.instance.GetEndingKey(), commandValue));
+            }
         }
     }
 
