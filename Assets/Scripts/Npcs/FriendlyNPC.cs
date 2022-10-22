@@ -52,7 +52,7 @@ public class FriendlyNPC
 
         //get two country descriptions according to the type of the npc
 
-        commandValue.Add(GameDataManager.instance.GetCommands()[2], GameDataManager.instance.GetDialogueByTag(type.ToString() + placeToTell));
+        commandValue.Add(GameDataManager.instance.GetCommands()[2], GameDataManager.instance.GetDialogueByTag(type.ToString() + GameDataManager.instance.GetSite(placeToTell).country));
 
 
         foreach(List<string> list in commandValue.Values)

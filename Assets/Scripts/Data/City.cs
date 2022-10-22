@@ -11,8 +11,8 @@ public class City
     public double latitude;
     public double longitude;
     public string id;
-
-    public City(string name, string description, List<string> interestPlaces, List<string> museums, double latitude, double longitude, string id)
+    public string country;
+    public City(string name, string description, List<string> interestPlaces, List<string> museums, double latitude, double longitude, string id, string country)
     {
         this.name = name;
         this.description = description;
@@ -21,5 +21,6 @@ public class City
         this.latitude = latitude;
         this.longitude = longitude;
         this.id = id;
+        this.country = country;
     }
 }

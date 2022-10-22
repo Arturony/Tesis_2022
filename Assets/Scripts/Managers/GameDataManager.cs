@@ -59,7 +59,8 @@ public class GameDataManager : MonoBehaviour
             //tasks.Add(artPiecesManager.LoadAllArtPiecesEvent());
             //tasks.Add(interestSiteManager.LoadAllSitesEvent());
             //tasks.Add(npcManager.LoadAllDialoguesEvent());
-
+            //tasks.Add(npcManager.LoadAllNamesEvent());
+            //tasks.Add(npcManager.LoadAllRobbersEvent());
             return tasks;
         }
         else
@@ -144,6 +145,16 @@ public class GameDataManager : MonoBehaviour
     public List<string> GetDialogueByTag(string tag)
     {
         return npcManager.GetDialogueByTag(tag);
+    }
+
+    public List<string> GetNameByGender(string tag)
+    {
+        return npcManager.GetNameByGender(tag);
+    }
+
+    public Robber GetRandomRobber()
+    {
+        return npcManager.GetRandomRobber();
     }
 
     private void OnEnable()

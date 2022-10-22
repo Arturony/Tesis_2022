@@ -25,9 +25,21 @@ public class MisionCreator : MonoBehaviour
     [SerializeField]
     private float flightSpeed;
 
+    [SerializeField]
+    private int minNumNpc;
+
+    [SerializeField]
+    private int maxNumNpc;
+
     private List<string> placesToTravel;
 
     private List<string> citiesPath;
+
+    private List<FriendlyNPC> npcs;
+
+    private Robber robber;
+
+    private ArtPiece artPiece;
 
     private double time;
 
@@ -144,20 +156,77 @@ public class MisionCreator : MonoBehaviour
     public void PickArtPiece()
     {
         //pick first museum in places to travel and pick a random art piece
+
+        Museum m = null;
+
+        for (int i = 0; i < placesToTravel.Count; i++)
+        {
+            m = GameDataManager.instance.GetMuseum(placesToTravel[i]);
+
+            if (m != null)
+                break;
+        }
+
+        int rand = Random.Range(0, m.piecesId.Count);
+
+        string artName = m.piecesId[rand];
+
+        artPiece = GameDataManager.instance.GetArtPiece(artName);
+
     }
 
     public void PickRobber()
     {
         //pick random robber from list of robbers
+        robber = GameDataManager.instance.GetRandomRobber();
     }
 
     public void SpawnNpcs()
     {
         //iterate through all the places. create between minNpcAmount and maxNpcAmmount.
         //pick random name and appearance. and random dialogue from the files
+
+        List<List<string>> names = new List<List<string>>();
+        npcs = new List<FriendlyNPC>();
+        names.Add(GameDataManager.instance.GetNameByGender(FriendlyNPC.Gender.Male.ToString()));
+        names.Add(GameDataManager.instance.GetNameByGender(FriendlyNPC.Gender.Female.ToString()));
+
         for(int i = 0; i < placesToTravel.Count; i++)
         {
+            string nextPlace = "";
 
+            if (i == placesToTravel.Count - 1)
+            {
+                nextPlace = placesToTravel[0];
+            }
+            else
+            {
+                nextPlace = placesToTravel[i + 1];
+            }
+
+            int numOfNpc = Random.Range(minNumNpc, maxNumNpc);
+
+            for(int j = 0; j < numOfNpc; j++)
+            {
+                //get two random numbers to determine type and gender
+
+                int randomType = Random.Range(0, 2);
+
+                int randomGender = Random.Range(0, 2);
+
+                int randomName = Random.Range(0, names[randomGender].Count);
+                //get the attributes and create npc
+
+                //npc type
+                FriendlyNPC.NPCType npcType = randomType == 0 ? FriendlyNPC.NPCType.Helpful : FriendlyNPC.NPCType.Misc;
+                //npc gender
+                FriendlyNPC.Gender npcGender = randomGender == 0 ? FriendlyNPC.Gender.Male : FriendlyNPC.Gender.Female;
+                //npc name
+                string name = names[randomGender][randomName];
+
+                FriendlyNPC n = new FriendlyNPC(npcType, npcGender, name, placesToTravel[i], nextPlace);
+                npcs.Add(n);
+            }
         }
     }
 

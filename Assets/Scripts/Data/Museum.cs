@@ -9,13 +9,16 @@ public class Museum
     public List<string> piecesId = new List<string>();
     public string location;
     public string id;
-
-    public Museum(string name, string description, List<string> piecesId, string location, string id)
+    public string country;
+    public string city;
+    public Museum(string name, string description, List<string> piecesId, string location, string id, string country, string city)
     {
         this.name = name;
         this.description = description;
         this.piecesId = piecesId;
         this.location = location;
         this.id = id;
+        this.country = country;
+        this.city = city;
     }
 }
