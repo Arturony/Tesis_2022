@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Mission
 {
-    private float maxTime;
+    private double maxTime;
 
     private float currenTime;
 
@@ -12,13 +12,15 @@ public class Mission
 
     private Dictionary<string, List<FriendlyNPC>> npcs;
 
-    private string artPieceRobbed;
+    private ArtPiece artPieceRobbed;
 
-    private string robber;
+    private Robber robber;
 
     private string startingPlace;
 
-    public Mission(float maxTime, string artPieceRobbed, string robber, List<string> placesToGo, string startingPlace)
+    private string currentPlace;
+
+    public Mission(double maxTime, ArtPiece artPieceRobbed, Robber robber, List<string> placesToGo, string startingPlace)
     {
         currenTime = 0f;
         this.placesToGo = placesToGo;
@@ -26,6 +28,7 @@ public class Mission
         this.artPieceRobbed = artPieceRobbed;
         this.robber = robber;
         this.startingPlace = startingPlace;
+        this.currentPlace = startingPlace;
     }
 
     public void Travel(float travelTime)
@@ -38,9 +41,14 @@ public class Mission
         return currenTime;
     }
 
-    public float GetMaxTime()
+    public double GetMaxTime()
     {
         return maxTime;
+    }
+
+    public string GetCurrentPlace()
+    {
+        return currentPlace;
     }
 
     public void AddNpc(string place, FriendlyNPC npc)
@@ -68,12 +76,17 @@ public class Mission
         return null;
     }
 
-    public string GetRobber()
+    public List<FriendlyNPC> GetNPCFromPlace(string place)
+    {
+        return npcs[place];
+    }
+
+    public Robber GetRobber()
     {
         return robber;
     }    
 
-    public string GetArtPieceRobbed()
+    public ArtPiece GetArtPieceRobbed()
     {
         return artPieceRobbed;
     }

@@ -29,7 +29,7 @@ public class GameStart : IState
 
     public void OnExit()
     {
-
+        GameStatesManager.activateLoadingPanel?.Invoke();
     }
 
     public void Tick()
@@ -60,14 +60,12 @@ public class GameStart : IState
                 //spawn the npc
                 //pick 
 
-                missionCreator.CreateMissionPath();
+                missionCreator.CreateMission();
+
+                manager.GettingInfo = true;
             }
                 
         }
-
-        
-
-
 
     }
 }

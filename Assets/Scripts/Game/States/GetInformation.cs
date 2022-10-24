@@ -6,6 +6,10 @@ public class GetInformation : IState
 {
     private GameStatesManager manager;
 
+    private string place;
+
+    private Mission mission;
+
     public GetInformation(GameStatesManager manager)
     {
         this.manager = manager;
@@ -13,16 +17,48 @@ public class GetInformation : IState
 
     public void OnEnter()
     {
+        mission = GameDataManager.instance.GetCurrentMission();
 
+        place = mission.GetCurrentPlace();
+
+        //The player is in a place. Show the place, menus and npcs. 
+
+        //send the event to get the asset to show in the background
+        GameStatesManager.activatePlaceBackground?.Invoke();
+        GameStatesManager.setPlaceBackground?.Invoke(place);
+        //send the event to activate the hud
+        GameStatesManager.activateHUD?.Invoke();
+        //spawn npcs
+        foreach (FriendlyNPC n in mission.GetNPCFromPlace(place))
+        {
+            //send the event to spawn the button in the spawn area and set the sprite 
+            GameStatesManager.spawnNpc?.Invoke(n);
+        }
     }
 
     public void OnExit()
     {
-
+        GameStatesManager.activateHUD?.Invoke();
+        GameStatesManager.activatePlaceBackground?.Invoke();
     }
 
     public void Tick()
     {
-        //Get the object or npc that the player is interacting with. Show interaction.
+        //wait to get an interaction with the npc
+        
+        if(manager.NpcSelectedVar)
+        {
+            string npcName = manager.GetNpcSelected();
+
+            FriendlyNPC npc = GameDataManager.instance.GetCurrentMission().GetNPC(place, npcName);
+
+            string dialogue = npc.GetRandomDialogue();
+
+            //fire dialogue event
+
+            GameStatesManager.startDialogue?.Invoke(dialogue, npcName);
+
+            manager.NpcSelectedVar = false;
+        }
     }
 }

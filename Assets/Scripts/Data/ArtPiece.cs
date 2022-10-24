@@ -10,8 +10,9 @@ public class ArtPiece
     public string description;
     public string origin;
     public string id;
+    public string museum;
 
-    public ArtPiece(string title, string creator, string date, string description, string origin, string id)
+    public ArtPiece(string title, string creator, string date, string description, string origin, string id, string museum)
     {
         this.title = title;
         this.creator = creator;
@@ -19,5 +20,6 @@ public class ArtPiece
         this.description = description;
         this.origin = origin;
         this.id = id;
+        this.museum = museum;
     }
 }

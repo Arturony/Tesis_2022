@@ -233,5 +233,10 @@ public class MisionCreator : MonoBehaviour
     public List<string> GetPathToFollow()
     {
         return placesToTravel;
-    }    
+    }
+    
+    public void CreateMission()
+    {
+        GameDataManager.instance.SetCurrentMission(new Mission(time, artPiece, robber, placesToTravel, artPiece.museum));
+    }
 }

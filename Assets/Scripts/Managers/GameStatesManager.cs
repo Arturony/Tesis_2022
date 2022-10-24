@@ -15,6 +15,8 @@ public class GameStatesManager : MonoBehaviour
     private bool gameLost = false;
     private bool gameWon = false;
 
+    private bool npcSelected = false;
+
     public bool IsGamePaused { get => isGamePaused; set => isGamePaused = value; }
     public bool GettingInfo { get => gettingInfo; set => gettingInfo = value; }
     public bool ShowingInfo { get => showingInfo; set => showingInfo = value; }
@@ -22,11 +24,28 @@ public class GameStatesManager : MonoBehaviour
     public bool Traveling { get => traveling; set => traveling = value; }
     public bool GameLost { get => gameLost; set => gameLost = value; }
     public bool GameWon { get => gameWon; set => gameWon = value; }
-
+    public bool NpcSelectedVar { get => npcSelected; set => npcSelected = value; }
 
     private MisionCreator missionCreator;
 
     private GameDataManager gameDataManager;
+
+    //events
+
+    public static Action<FriendlyNPC> spawnNpc;
+
+    public static Action activateHUD;
+
+    public static Action activateLoadingPanel;
+
+    public static Action activatePlaceBackground;
+
+    public static Action<string> setPlaceBackground;
+
+    public static Action<string, string> startDialogue;
+
+    //misc variables
+    private string npcName;
 
     private void Awake()
     {
@@ -83,6 +102,14 @@ public class GameStatesManager : MonoBehaviour
 
         
     }
+
+    public void NpcSelected(string name)
+    {
+        npcSelected = true;
+        npcName = name;
+    }
+
+    public string GetNpcSelected() => npcName;
 
     private void OnDisable()
     {
