@@ -22,6 +22,9 @@ public class NpcUIDisplay : MonoBehaviour
     [SerializeField]
     private TMP_Text npcDialogue;
 
+    [SerializeField]
+    private TMP_Text timeText;
+
     public static Action activateDialogue;
 
     private void SpawnNpc(FriendlyNPC npc)
@@ -33,6 +36,17 @@ public class NpcUIDisplay : MonoBehaviour
 
         //set the sprite
 
+    }
+
+    private void SetTimeText(double time)
+    {
+        double minutes = time - Math.Truncate(time);
+
+        double hours = time - minutes;
+
+        string s = hours + " h " + (minutes * 60) + " min";
+
+        timeText.text = s;
     }
 
     private void StartDialogue(string dialogue, string name)
@@ -56,11 +70,13 @@ public class NpcUIDisplay : MonoBehaviour
     {
         GameStatesManager.spawnNpc += SpawnNpc;
         GameStatesManager.startDialogue += StartDialogue;
+        GameStatesManager.setTimeText += SetTimeText;
     }
 
     private void OnDisable()
     {
         GameStatesManager.spawnNpc -= SpawnNpc;
         GameStatesManager.startDialogue -= StartDialogue;
+        GameStatesManager.setTimeText -= SetTimeText;
     }
 }

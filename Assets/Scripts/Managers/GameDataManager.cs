@@ -55,12 +55,12 @@ public class GameDataManager : MonoBehaviour
 
             tasks.Add(countryManager.LoadAllCountriesEvent());
             tasks.Add(cityManager.LoadAllCitiesEvent());
-            //tasks.Add(museumManager.LoadAllMuseumsEvent());
-            //tasks.Add(artPiecesManager.LoadAllArtPiecesEvent());
-            //tasks.Add(interestSiteManager.LoadAllSitesEvent());
-            //tasks.Add(npcManager.LoadAllDialoguesEvent());
-            //tasks.Add(npcManager.LoadAllNamesEvent());
-            //tasks.Add(npcManager.LoadAllRobbersEvent());
+            tasks.Add(museumManager.LoadAllMuseumsEvent());
+            tasks.Add(artPiecesManager.LoadAllArtPiecesEvent());
+            tasks.Add(interestSiteManager.LoadAllSitesEvent());
+            tasks.Add(npcManager.LoadAllDialoguesEvent());
+            tasks.Add(npcManager.LoadAllNamesEvent());
+            tasks.Add(npcManager.LoadAllRobbersEvent());
             return tasks;
         }
         else
@@ -155,6 +155,11 @@ public class GameDataManager : MonoBehaviour
     public Robber GetRandomRobber()
     {
         return npcManager.GetRandomRobber();
+    }
+
+    public List<string> GetAllRobbers()
+    {
+        return npcManager.GetAllRobbers();
     }
 
     private void OnEnable()

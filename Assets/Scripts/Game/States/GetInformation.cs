@@ -28,6 +28,9 @@ public class GetInformation : IState
         GameStatesManager.setPlaceBackground?.Invoke(place);
         //send the event to activate the hud
         GameStatesManager.activateHUD?.Invoke();
+
+        GameStatesManager.setTimeText?.Invoke(mission.GetCurrenTime());
+
         //spawn npcs
         foreach (FriendlyNPC n in mission.GetNPCFromPlace(place))
         {

@@ -128,6 +128,27 @@ public class NpcManager : MonoBehaviour
         return names[tag];
     }
 
+    public Robber GetRobber(string name)
+    {
+        foreach(Robber r in robbers)
+        {
+            if (r.name.Equals(name))
+                return r;
+        }
+        return null;
+    }
+
+    public List<string> GetAllRobbers()
+    {
+        List<string> robs = new List<string>();
+
+        foreach(Robber r in robbers)
+        {
+            robs.Add(r.name);
+        }
+        return robs;
+    }
+
     public Robber GetRandomRobber()
     {
         int rand = UnityEngine.Random.Range(0, robbers.Count);

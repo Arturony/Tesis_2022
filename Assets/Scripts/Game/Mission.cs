@@ -6,7 +6,7 @@ public class Mission
 {
     private double maxTime;
 
-    private float currenTime;
+    private double currenTime;
 
     private List<string> placesToGo;
 
@@ -31,12 +31,12 @@ public class Mission
         this.currentPlace = startingPlace;
     }
 
-    public void Travel(float travelTime)
+    public void Travel(double travelTime)
     {
         currenTime += travelTime;
     }
 
-    public float GetCurrenTime()
+    public double GetCurrenTime()
     {
         return currenTime;
     }
@@ -49,6 +49,11 @@ public class Mission
     public string GetCurrentPlace()
     {
         return currentPlace;
+    }
+
+    public void SetCurrentPlace(string place)
+    {
+        currentPlace = place;
     }
 
     public void AddNpc(string place, FriendlyNPC npc)

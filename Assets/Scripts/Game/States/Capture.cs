@@ -13,16 +13,33 @@ public class Capture : IState
 
     public void OnEnter()
     {
-
+        //show panels
+        GameStatesManager.showRobberUI?.Invoke();
     }
 
     public void OnExit()
     {
-
+        //hide panels
+        RobberCaptureUIDisplay.activateRobberPanel?.Invoke();
     }
 
     public void Tick()
     {
         //Trigget capture secuence. Then show the result. 
+        if(manager.RobberSelected == true)
+        {
+            manager.RobberSelected = false;
+
+            if(GameDataManager.instance.GetCurrentMission().GetRobber().Equals(manager.GetRobberName()))
+            {
+                //win
+
+            }
+            else
+            {
+                //lose
+
+            }
+        }
     }
 }

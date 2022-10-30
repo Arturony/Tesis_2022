@@ -237,6 +237,14 @@ public class MisionCreator : MonoBehaviour
     
     public void CreateMission()
     {
+        //execute all the past methods
+
+        CreateMissionPath();
+        MaxMissionTime();
+        PickArtPiece();
+        PickRobber();
+        SpawnNpcs();
+
         GameDataManager.instance.SetCurrentMission(new Mission(time, artPiece, robber, placesToTravel, artPiece.museum));
     }
 }

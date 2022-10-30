@@ -14,8 +14,11 @@ public class GameStatesManager : MonoBehaviour
     private bool traveling = false;
     private bool gameLost = false;
     private bool gameWon = false;
+    private bool moving = false;
 
     private bool npcSelected = false;
+    private bool placeSelected = false;
+    private bool robberSelected = false;
 
     public bool IsGamePaused { get => isGamePaused; set => isGamePaused = value; }
     public bool GettingInfo { get => gettingInfo; set => gettingInfo = value; }
@@ -25,6 +28,9 @@ public class GameStatesManager : MonoBehaviour
     public bool GameLost { get => gameLost; set => gameLost = value; }
     public bool GameWon { get => gameWon; set => gameWon = value; }
     public bool NpcSelectedVar { get => npcSelected; set => npcSelected = value; }
+    public bool PlaceSelected { get => placeSelected; set => placeSelected = value; }
+    public bool Moving { get => moving; set => moving = value; }
+    public bool RobberSelected { get => robberSelected; set => robberSelected = value; }
 
     private MisionCreator missionCreator;
 
@@ -42,10 +48,20 @@ public class GameStatesManager : MonoBehaviour
 
     public static Action<string> setPlaceBackground;
 
+    public static Action<double> setTimeText;
+
     public static Action<string, string> startDialogue;
+
+    public static Action showTravelUI;
+
+    public static Action<string> showMoveUI;
+
+    public static Action showRobberUI;
 
     //misc variables
     private string npcName;
+    private string placeName;
+    private string robberName;
 
     private void Awake()
     {
@@ -63,6 +79,7 @@ public class GameStatesManager : MonoBehaviour
         var gameOver = new GameOver(this);
         var gameClear = new GameClear(this);
         var pause = new Pause(this);
+        var move = new Move(this);
 
         //transitions
         At(gameStart, getInformation, GettingInformation());
@@ -75,8 +92,11 @@ public class GameStatesManager : MonoBehaviour
 
         At(getInformation, capture, ToCapture());
 
-        At(getInformation, travel, ToTravel());
-        At(travel, getInformation, GettingInformation());
+        At(getInformation, move, ToMove());
+        At(move, getInformation, GettingInformation());
+
+        At(move, travel, ToTravel());
+        At(travel, move, ToMove());
 
         At(travel, gameOver, GameOverTransition());
 
@@ -93,12 +113,13 @@ public class GameStatesManager : MonoBehaviour
 
         //transition functions
         Func<bool> GamePaused() => () => IsGamePaused == true;
-        Func<bool> GettingInformation() => () => IsGamePaused == false && GettingInfo == true && ShowingInfo == false && Traveling == false && Capturing == false;
-        Func<bool> ShowingInformation() => () => IsGamePaused == false && GettingInfo == false && ShowingInfo == true && Traveling == false && Capturing == false;
-        Func<bool> ToCapture() => () => IsGamePaused == false && GettingInfo == false && ShowingInfo == false && Traveling == false && Capturing == true;
-        Func<bool> ToTravel() => () => IsGamePaused == false && GettingInfo == false && ShowingInfo == false && Traveling == true && Capturing == false;
-        Func<bool> GameOverTransition() => () => IsGamePaused == false && GettingInfo == false && ShowingInfo == false && Traveling == false && Capturing == false && GameLost == true && GameWon == false;
-        Func<bool> GameWonTransition() => () => IsGamePaused == false && GettingInfo == false && ShowingInfo == false && Traveling == false && Capturing == false && GameLost == false && GameWon == true;
+        Func<bool> GettingInformation() => () => IsGamePaused == false && GettingInfo == true && ShowingInfo == false && Traveling == false && Capturing == false && Moving == false;
+        Func<bool> ShowingInformation() => () => IsGamePaused == false && GettingInfo == false && ShowingInfo == true && Traveling == false && Capturing == false && Moving == false;
+        Func<bool> ToCapture() => () => IsGamePaused == false && GettingInfo == false && ShowingInfo == false && Traveling == false && Capturing == true && Moving == false;
+        Func<bool> ToTravel() => () => IsGamePaused == false && GettingInfo == false && ShowingInfo == false && Traveling == true && Capturing == false && Moving == false;
+        Func<bool> ToMove() => () => IsGamePaused == false && GettingInfo == false && ShowingInfo == false && Traveling == false && Capturing == false && Moving == true;
+        Func<bool> GameOverTransition() => () => IsGamePaused == false && GettingInfo == false && ShowingInfo == false && Traveling == false && Capturing == false && GameLost == true && GameWon == false && Moving == false;
+        Func<bool> GameWonTransition() => () => IsGamePaused == false && GettingInfo == false && ShowingInfo == false && Traveling == false && Capturing == false && GameLost == false && GameWon == true && Moving == false;
 
         
     }
@@ -109,7 +130,22 @@ public class GameStatesManager : MonoBehaviour
         npcName = name;
     }
 
+    public void SelectPlace(string name)
+    {
+        placeSelected = true;
+        placeName = name;
+    }
+
+    public void SelectRobber(string name)
+    {
+        robberSelected = true;
+        robberName = name;
+    }
+
     public string GetNpcSelected() => npcName;
+    public string GetPlaceName() => placeName;
+
+    public string GetRobberName() => robberName;
 
     private void OnDisable()
     {

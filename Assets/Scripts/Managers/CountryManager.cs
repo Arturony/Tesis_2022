@@ -94,12 +94,11 @@ public class CountryManager : MonoBehaviour
 
     private void OnEnable()
     {
-        CountryDisplay.getCountryNames += GetCountryNames;
+        
     }
 
     private void OnDisable()
     {
-        //LoaderManager.loadCountries -= LoadAllCountriesEvent;
-        //CountryDisplay.getCountryNames -= GetCountryNames;
+        
     }
 }
