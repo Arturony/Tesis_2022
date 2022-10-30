@@ -11,5 +11,6 @@
 	],
 	"latitude": 3.359889,
 	"longitude": -76.638565,
-	"id": "Cali"
+	"id": "Cali",
+	"country":"Colombia"
 }

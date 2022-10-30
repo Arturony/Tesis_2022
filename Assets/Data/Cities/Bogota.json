@@ -11,5 +11,6 @@
 	],
 	"latitude": 4.624335,
 	"longitude": -74.063644,
-	"id": "Bogotá"
+	"id": "Bogotá",
+	"country":"Colombia"
 }

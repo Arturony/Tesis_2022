@@ -11,5 +11,6 @@
 	],
 	"latitude": 6.230833,
 	"longitude": -75.590553,
-	"id": "Medellin"
+	"id": "Medellin",
+	"country":"Colombia"
 }
