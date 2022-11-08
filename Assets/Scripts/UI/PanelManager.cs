@@ -27,6 +27,12 @@ public class PanelManager : MonoBehaviour
     [SerializeField]
     private GameObject robberPanel;
 
+    [SerializeField]
+    private GameObject winPanel;
+
+    [SerializeField]
+    private GameObject losePanel;
+
     private void ActivateHudPanel()
     {
         if (hudPanel.activeInHierarchy)
@@ -83,6 +89,21 @@ public class PanelManager : MonoBehaviour
             robberPanel.SetActive(true);
     }
 
+    private void ActivateWinPanel()
+    {
+        if (winPanel.activeInHierarchy)
+            winPanel.SetActive(false);
+        else
+            winPanel.SetActive(true);
+    }
+    private void ActivateLosePanel()
+    {
+        if (losePanel.activeInHierarchy)
+            losePanel.SetActive(false);
+        else
+            losePanel.SetActive(true);
+    }
+
     private void OnEnable()
     {
         GameStatesManager.activateHUD += ActivateHudPanel;
@@ -91,6 +112,9 @@ public class PanelManager : MonoBehaviour
         GameStatesManager.activateLoadingPanel += ActivateLoadingPanel;
         TravelUIDisplay.activateTravelPanel += ActivateTravelPanel;
         MoveUIDisplay.activateSitesPanel += ActivateMovePanel;
+        RobberCaptureUIDisplay.activateRobberPanel += ActivateRobberPanel;
+        GameStatesManager.showGameSuccess += ActivateWinPanel;
+        GameStatesManager.showGameOver += ActivateLosePanel;
     }
 
     private void OnDisable()
@@ -101,5 +125,8 @@ public class PanelManager : MonoBehaviour
         GameStatesManager.activateLoadingPanel -= ActivateLoadingPanel;
         TravelUIDisplay.activateTravelPanel -= ActivateTravelPanel;
         MoveUIDisplay.activateSitesPanel -= ActivateMovePanel;
+        RobberCaptureUIDisplay.activateRobberPanel -= ActivateRobberPanel;
+        GameStatesManager.showGameSuccess -= ActivateWinPanel;
+        GameStatesManager.showGameOver -= ActivateLosePanel;
     }
 }

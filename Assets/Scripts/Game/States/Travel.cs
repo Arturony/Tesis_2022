@@ -6,9 +6,12 @@ public class Travel : IState
 {
     private GameStatesManager manager;
 
-    public Travel(GameStatesManager manager)
+    private double flightSpeed;
+
+    public Travel(GameStatesManager manager, double flightSpeed)
     {
         this.manager = manager;
+        this.flightSpeed = flightSpeed;
     }
 
     public void OnEnter()
@@ -52,7 +55,9 @@ public class Travel : IState
 
                     City to = GameDataManager.instance.GetCity(site.city);
 
-                    double time = HarvesineDistance.HaversineDistance(new LatLng(from.latitude, from.longitude), new LatLng(to.latitude, to.longitude));
+                    double dist = HarvesineDistance.HaversineDistance(new LatLng(from.latitude, from.longitude), new LatLng(to.latitude, to.longitude));
+
+                    double time = dist / flightSpeed;
 
                     mission.Travel(time);
 

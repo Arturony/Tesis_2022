@@ -29,16 +29,17 @@ public class Capture : IState
         if(manager.RobberSelected == true)
         {
             manager.RobberSelected = false;
+            manager.Capturing = false;
 
-            if(GameDataManager.instance.GetCurrentMission().GetRobber().Equals(manager.GetRobberName()))
+            if (GameDataManager.instance.GetCurrentMission().GetRobber().robberName.Equals(manager.GetRobberName()))
             {
                 //win
-
+                manager.GameWon = true;
             }
             else
             {
                 //lose
-
+                manager.GameLost = true;
             }
         }
     }

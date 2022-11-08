@@ -59,6 +59,7 @@ public class TravelUIDisplay : MonoBehaviour
         while(buttons.Length < cities.Count)
         {
             GameObject g = Instantiate(buttonInstance, cityParent);
+            buttons = cityParent.GetComponentsInChildren<Button>();
         }
 
         if(buttons.Length >= cities.Count)
@@ -69,7 +70,9 @@ public class TravelUIDisplay : MonoBehaviour
                 {
                     buttons[i].gameObject.SetActive(true);
                     buttons[i].gameObject.GetComponentInChildren<TMP_Text>().text = cities[i];
-                    buttons[i].onClick.AddListener(delegate { gameStates.SelectPlace(cities[i]);});
+                    //buttons[i].onClick.AddListener(delegate { gameStates.SelectPlace(cities[i]);});
+                    Button b = buttons[i];
+                    AddListener(b, cities[i]);
                 }
                 else
                 {
@@ -77,6 +80,12 @@ public class TravelUIDisplay : MonoBehaviour
                 }
             }
         }
+    }
+
+    void AddListener(Button b, string value)
+    {
+        b.onClick.AddListener(() => gameStates.SelectPlace(value));
+        //b.onClick.AddListener(() => sitesTransform.gameObject.SetActive(false));
     }
 
     private void OnEnable()

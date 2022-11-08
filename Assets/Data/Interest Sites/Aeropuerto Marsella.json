@@ -1,0 +1,9 @@
+{
+    "name": "Aeropuerto de Marsella",
+    "description": "Es una catedral de culto católico, sede de la archidiócesis de París, la capital de Francia. Dedicada a la Virgen María, madre de Jesucristo, se sitúa en la pequeña isla de la Cité, rodeada por las aguas del río Sena. Es uno de los monumentos más populares de la capital francesa.",
+    "location": "location",
+    "id": "Aeropuerto de Marsella",
+    "country": "Francia",
+    "city": "Marsella",
+    "type": "Aeropuerto"
+}

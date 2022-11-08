@@ -13,7 +13,7 @@ public class GameClear : IState
 
     public void OnEnter()
     {
-
+        GameStatesManager.showGameSuccess?.Invoke();
     }
 
     public void OnExit()

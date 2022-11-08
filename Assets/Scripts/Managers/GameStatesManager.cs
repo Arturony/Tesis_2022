@@ -58,6 +58,12 @@ public class GameStatesManager : MonoBehaviour
 
     public static Action showRobberUI;
 
+    public static Action<string, string, string> showPlaceInfo;
+
+    public static Action showGameOver;
+
+    public static Action showGameSuccess;
+
     //misc variables
     private string npcName;
     private string placeName;
@@ -72,7 +78,7 @@ public class GameStatesManager : MonoBehaviour
 
         //states
         var gameStart = new GameStart(this, missionCreator, gameDataManager);
-        var travel = new Travel(this);
+        var travel = new Travel(this, missionCreator.flightSpeed);
         var getInformation = new GetInformation(this);
         var showInformation = new ShowInformation(this);
         var capture = new Capture(this);
@@ -97,6 +103,7 @@ public class GameStatesManager : MonoBehaviour
 
         At(move, travel, ToTravel());
         At(travel, move, ToMove());
+        At(travel, getInformation, GettingInformation());
 
         At(travel, gameOver, GameOverTransition());
 

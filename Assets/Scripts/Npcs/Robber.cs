@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Robber : MonoBehaviour
+public class Robber
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string robberName;
 
-    // Update is called once per frame
-    void Update()
+    public List<string> tags;
+
+    public Robber(string robberName, List<string> tags)
     {
-        
+        this.robberName = robberName;
+        this.tags = tags;
     }
 }

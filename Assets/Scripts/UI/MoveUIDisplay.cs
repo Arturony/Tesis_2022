@@ -28,34 +28,43 @@ public class MoveUIDisplay : MonoBehaviour
         List<string> sites = GameDataManager.instance.GetCity(name).interestPlaces;
         List<string> museums = GameDataManager.instance.GetCity(name).museums;
 
-        while (buttons.Length < sites.Count || buttons.Length < museums.Count)
+        while (buttons.Length < sites.Count + museums.Count)
         {
             GameObject g = Instantiate(buttonInstance, sitesTransform);
+            buttons = sitesTransform.GetComponentsInChildren<Button>();
         }
 
-        if (buttons.Length >= sites.Count && buttons.Length >= museums.Count)
+        if (buttons.Length >= sites.Count + museums.Count)
         {
             for (int i = 0; i < buttons.Length; i++)
             {
-                if (i < sites.Count)
+                if(i < sites.Count)
                 {
                     buttons[i].gameObject.SetActive(true);
                     buttons[i].gameObject.GetComponentInChildren<TMP_Text>().text = sites[i];
-                    buttons[i].onClick.AddListener(delegate { gameStates.SelectPlace(sites[i]); sitesTransform.gameObject.SetActive(false);});
+                    Button b = buttons[i];
+                    AddListener(b, sites[i]);
                 }
-                if (i < museums.Count)
+                else if (i >= sites.Count && i - sites.Count < museums.Count)
                 {
                     buttons[i].gameObject.SetActive(true);
-                    buttons[i].gameObject.GetComponentInChildren<TMP_Text>().text = museums[i];
-                    buttons[i].onClick.AddListener(delegate { gameStates.SelectPlace(museums[i]); sitesTransform.gameObject.SetActive(false);});
+                    buttons[i].gameObject.GetComponentInChildren<TMP_Text>().text = museums[i - sites.Count];
+                    Button b = buttons[i];
+                    AddListener(b, museums[i - sites.Count]);
 
                 }
-                else if(i >= sites.Count && i >= museums.Count)
+                else if(i >= sites.Count + museums.Count)
                 {
                     buttons[i].gameObject.SetActive(false);
                 }
             }
         }
+    }
+
+    void AddListener(Button b, string value)
+    {
+        b.onClick.AddListener(() => gameStates.SelectPlace(value));
+        //b.onClick.AddListener(() => sitesTransform.gameObject.SetActive(false));
     }
 
     private void OnEnable()

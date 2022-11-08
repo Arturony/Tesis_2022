@@ -24,30 +24,35 @@ public class TextHelper
 
         string actualCommand = "";
 
-        int numberOfChar = actualString.Length;
+        int numberOfChar = modifiedString.Length;
 
-        for(int i = 0; i < numberOfChar; i++)
+        for(int i = 0; i < modifiedString.Length; i++)
         {
-            char c = actualString[i];
+            char c = modifiedString[i];
 
             if (inTag == false && !actualCommand.Equals(""))
             {
                 //we have a command and are not in a tag
                 List<string> values = commandValue[actualCommand];
-                int indx = Random.Range(0, values.Count);
-                string value = values[indx];
-                values.RemoveAt(indx);
+                string value = "";
+                if (values.Count > 1)
+                {
+                    int indx = Random.Range(0, values.Count);
+                    value = values[indx];
+                    values.RemoveAt(indx);
 
-                commandValue[actualCommand] = values;
+                    commandValue[actualCommand] = values;
+                }
+                else if(values.Count == 1)
+                    value = values[0];
 
                 string part1 = modifiedString.Substring(0, startingIndex);
                 string part2 = modifiedString.Substring(endigIndex);
                 modifiedString = part1 + part2;
-                modifiedString.Insert(startingIndex, value);
+                modifiedString = modifiedString.Insert(startingIndex, value);
 
                 actualCommand = "";
                 i = startingIndex + value.Length;
-                numberOfChar = modifiedString.Length;
             }
 
             if (c.Equals(startingKey))
@@ -57,11 +62,11 @@ public class TextHelper
             }
             else if(c.Equals(endingKey))
             {
-                endigIndex = i;
+                endigIndex = i + 1;
                 inTag = false;
             }
 
-            if(inTag)
+            if(inTag && i != startingIndex)
             {
                 actualCommand += c;
             }

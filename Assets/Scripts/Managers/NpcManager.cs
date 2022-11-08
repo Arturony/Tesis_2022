@@ -66,7 +66,8 @@ public class NpcManager : MonoBehaviour
                 if (s.EndsWith(".json"))
                 {
                     string text = await FileUtil.ReadAllTextAsync(s);
-                    robbers = JsonConvert.DeserializeObject<List<Robber>>(text);
+                    Robber r = JsonConvert.DeserializeObject<Robber>(text);
+                    robbers.Add(r);
                 }
             }
             await Task.WhenAll(writeTaskList);
@@ -132,7 +133,7 @@ public class NpcManager : MonoBehaviour
     {
         foreach(Robber r in robbers)
         {
-            if (r.name.Equals(name))
+            if (r.robberName.Equals(name))
                 return r;
         }
         return null;
@@ -144,7 +145,7 @@ public class NpcManager : MonoBehaviour
 
         foreach(Robber r in robbers)
         {
-            robs.Add(r.name);
+            robs.Add(r.robberName);
         }
         return robs;
     }

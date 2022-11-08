@@ -23,6 +23,7 @@ public class Mission
     public Mission(double maxTime, ArtPiece artPieceRobbed, Robber robber, List<string> placesToGo, string startingPlace)
     {
         currenTime = 0f;
+        this.maxTime = maxTime;
         this.placesToGo = placesToGo;
         npcs = new Dictionary<string, List<FriendlyNPC>>();
         this.artPieceRobbed = artPieceRobbed;

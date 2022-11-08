@@ -1,0 +1,9 @@
+{
+    "name": "Naramachi museum",
+    "description": "El Museo del Oro del Banco de la República en Bogotá preserva colecciones arqueológicas que son patrimonio y orgullo de todos los colombianos." ,
+    "piecesId": ["La Gioconda"] ,
+    "location": "loation", 
+    "id": "Naramachi museum",
+    "country": "Japon",
+    "city": "Nara"
+}

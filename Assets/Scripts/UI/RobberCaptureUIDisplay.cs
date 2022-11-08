@@ -30,6 +30,7 @@ public class RobberCaptureUIDisplay : MonoBehaviour
         while (buttons.Length < robs.Count)
         {
             GameObject g = Instantiate(buttonInstance, robbersTransform);
+            buttons = robbersTransform.GetComponentsInChildren<Button>();
         }
 
         if (buttons.Length >= robs.Count)
@@ -40,7 +41,9 @@ public class RobberCaptureUIDisplay : MonoBehaviour
                 {
                     buttons[i].gameObject.SetActive(true);
                     buttons[i].gameObject.GetComponentInChildren<TMP_Text>().text = robs[i];
-                    buttons[i].onClick.AddListener(delegate { gameStates.SelectRobber(robs[i]);});
+                    //buttons[i].onClick.AddListener(delegate { gameStates.SelectRobber(robs[i]);});
+                    Button b = buttons[i];
+                    AddListener(b, robs[i]);
 
                     // set sprite
                 }
@@ -50,6 +53,12 @@ public class RobberCaptureUIDisplay : MonoBehaviour
                 }
             }
         }
+    }
+
+    void AddListener(Button b, string value)
+    {
+        b.onClick.AddListener(() => gameStates.SelectRobber(value));
+        //b.onClick.AddListener(() => sitesTransform.gameObject.SetActive(false));
     }
 
     private void OnEnable()

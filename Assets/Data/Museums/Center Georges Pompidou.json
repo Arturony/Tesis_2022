@@ -1,0 +1,9 @@
+{
+    "name": "Center Georges Pompidou",
+    "description": "Centro Nacional de Arte y Cultura Georges Pompidou de París (Francia), diseñado por los arquitectos Renzo Piano y Richard Rogers. El edificio, concluido en 1977, fue inaugurado el 31 de enero del mismo año." ,
+    "piecesId": ["La Gioconda"] ,
+    "location": "loation", 
+    "id": "Center Georges Pompidou",
+    "country": "Francia",
+    "city": "Paris"
+}

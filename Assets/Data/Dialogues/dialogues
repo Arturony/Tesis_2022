@@ -1,0 +1,14 @@
+{
+    "miscColombia": [
+      "Vi a alguien comprando una guía de turismo para [Country].",
+      "[Country] es un país muy interesante."
+    ],
+    "helpfulColombia": [
+      "Vi a alguien comprando una guía de turismo para [Country].",
+      "[Country] es un país muy interesante."
+    ],
+    "robber": [
+      "Vi a alguien [Robber] y [Robber] caminando por aquí hace poco. Se veía sospechoso.",
+      "Una persona [Robber] actuando muy raro. Parecía que escondía algo."
+    ]
+  }

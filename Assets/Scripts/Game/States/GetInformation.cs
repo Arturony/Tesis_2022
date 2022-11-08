@@ -29,13 +29,24 @@ public class GetInformation : IState
         //send the event to activate the hud
         GameStatesManager.activateHUD?.Invoke();
 
-        GameStatesManager.setTimeText?.Invoke(mission.GetCurrenTime());
+        GameStatesManager.setTimeText?.Invoke(mission.GetMaxTime() - mission.GetCurrenTime());
 
         //spawn npcs
         foreach (FriendlyNPC n in mission.GetNPCFromPlace(place))
         {
             //send the event to spawn the button in the spawn area and set the sprite 
             GameStatesManager.spawnNpc?.Invoke(n);
+        }
+
+        if (GameDataManager.instance.GetSite(place) != null)
+        {
+            InterestSite s = GameDataManager.instance.GetSite(place);
+            GameStatesManager.showPlaceInfo?.Invoke(place, s.city, s.country);
+        } 
+        else
+        {
+            Museum m = GameDataManager.instance.GetMuseum(place);
+            GameStatesManager.showPlaceInfo?.Invoke(place, m.city, m.country);
         }
     }
 

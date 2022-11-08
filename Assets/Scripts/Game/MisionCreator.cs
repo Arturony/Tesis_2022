@@ -23,7 +23,7 @@ public class MisionCreator : MonoBehaviour
     private float additionalTime;
 
     [SerializeField]
-    private float flightSpeed;
+    public float flightSpeed;
 
     [SerializeField]
     private int minNumNpc;
@@ -53,7 +53,7 @@ public class MisionCreator : MonoBehaviour
 
         //create a copy of the countries list so we can remove the already selected countries
 
-        List<string> contries = GameDataManager.instance.GetCountryNames();
+        List<string> contries = new List<string>(GameDataManager.instance.GetCountryNames());
 
         List<string> countriesPath = new List<string>();
 
@@ -77,7 +77,7 @@ public class MisionCreator : MonoBehaviour
 
             Country c = GameDataManager.instance.GetCountry(name);
 
-            List<string> cities = c.cities;
+            List<string> cities = new List<string>(c.cities);
 
             int numberCities = Random.Range(1, maxCityStops);
             //check the country cities and select some
@@ -96,8 +96,8 @@ public class MisionCreator : MonoBehaviour
                 int numberMuseums = Random.Range(1, maxMuseumStops);
                 int numberPlaces = Random.Range(minPlacesStops, maxPlacesStops);
 
-                List<string> museums = city.museums;
-                List<string> places = city.interestPlaces;
+                List<string> museums = new List<string>(city.museums);
+                List<string> places = new List<string>(city.interestPlaces);
 
                 for (int z = 0; z < numberMuseums; z++)
                 {
@@ -172,7 +172,7 @@ public class MisionCreator : MonoBehaviour
         string artName = m.piecesId[rand];
 
         artPiece = GameDataManager.instance.GetArtPiece(artName);
-
+        placesToTravel.Add(artPiece.museum);
     }
 
     public void PickRobber()
@@ -228,6 +228,65 @@ public class MisionCreator : MonoBehaviour
                 npcs.Add(n);
             }
         }
+
+        foreach(string s in GameDataManager.instance.GetSitesNames())
+        {
+            if(!placesToTravel.Contains(s))
+            {
+                int numOfNpc = Random.Range(minNumNpc, maxNumNpc);
+                for (int j = 0; j < numOfNpc; j++)
+                {
+                    //get two random numbers to determine type and gender
+
+                    int randomGender = Random.Range(0, 2);
+
+                    int randomName = Random.Range(0, names[randomGender].Count);
+                    //get the attributes and create npc
+
+                    //npc type
+                    FriendlyNPC.NPCType npcType = FriendlyNPC.NPCType.Misc;
+                    //npc gender
+                    FriendlyNPC.Gender npcGender = randomGender == 0 ? FriendlyNPC.Gender.Male : FriendlyNPC.Gender.Female;
+                    //npc name
+                    string name = names[randomGender][randomName];
+
+                    FriendlyNPC n = new FriendlyNPC(npcType, npcGender, name, s, "");
+                    npcs.Add(n);
+                }
+            }
+        }
+
+        foreach (string s in GameDataManager.instance.GetMuseumNames())
+        {
+            if (!placesToTravel.Contains(s))
+            {
+                int numOfNpc = Random.Range(minNumNpc, maxNumNpc);
+                for (int j = 0; j < numOfNpc; j++)
+                {
+                    //get two random numbers to determine type and gender
+
+                    int randomGender = Random.Range(0, 2);
+
+                    int randomName = Random.Range(0, names[randomGender].Count);
+                    //get the attributes and create npc
+
+                    //npc type
+                    FriendlyNPC.NPCType npcType = FriendlyNPC.NPCType.Misc;
+                    //npc gender
+                    FriendlyNPC.Gender npcGender = randomGender == 0 ? FriendlyNPC.Gender.Male : FriendlyNPC.Gender.Female;
+                    //npc name
+                    string name = names[randomGender][randomName];
+
+                    FriendlyNPC n = new FriendlyNPC(npcType, npcGender, name, s, "");
+                    npcs.Add(n);
+                }
+            }
+        }
+
+        foreach (FriendlyNPC npc in npcs)
+        {
+            GameDataManager.instance.GetCurrentMission().AddNpc(npc.GetPlace(), npc);
+        }
     }
 
     public List<string> GetPathToFollow()
@@ -243,8 +302,9 @@ public class MisionCreator : MonoBehaviour
         MaxMissionTime();
         PickArtPiece();
         PickRobber();
-        SpawnNpcs();
 
         GameDataManager.instance.SetCurrentMission(new Mission(time, artPiece, robber, placesToTravel, artPiece.museum));
+
+        SpawnNpcs();
     }
 }

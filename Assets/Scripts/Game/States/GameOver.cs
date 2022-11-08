@@ -13,7 +13,7 @@ public class GameOver : IState
 
     public void OnEnter()
     {
-
+        GameStatesManager.showGameOver?.Invoke();
     }
 
     public void OnExit()

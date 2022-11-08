@@ -19,9 +19,9 @@ public class Move : IState
         string name;
 
         if (GameDataManager.instance.GetSite(mission.GetCurrentPlace()) != null)
-            name = GameDataManager.instance.GetSite(mission.GetCurrentPlace()).name;
+            name = GameDataManager.instance.GetSite(mission.GetCurrentPlace()).city;
         else
-            name = GameDataManager.instance.GetMuseum(mission.GetCurrentPlace()).name; 
+            name = GameDataManager.instance.GetMuseum(mission.GetCurrentPlace()).city; 
 
         GameStatesManager.showMoveUI?.Invoke(name);
     }
@@ -50,7 +50,8 @@ public class Move : IState
             if (mission.GetCurrenTime() > mission.GetMaxTime())
             {
                 //trigger game over
-
+                manager.Moving = false;
+                manager.GameLost = true;
             }
             else
             {
@@ -58,7 +59,7 @@ public class Move : IState
 
                 //show animation or something
                 manager.GettingInfo = true;
-                manager.Traveling = false;
+                manager.Moving = false;
             }
 
         }
