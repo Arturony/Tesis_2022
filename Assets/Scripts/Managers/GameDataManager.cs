@@ -157,6 +157,11 @@ public class GameDataManager : MonoBehaviour
         return npcManager.GetRandomRobber();
     }
 
+    public Robber GetRobber(string name)
+    {
+        return npcManager.GetRobber(name);
+    }
+
     public List<string> GetAllRobbers()
     {
         return npcManager.GetAllRobbers();

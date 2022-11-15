@@ -36,16 +36,39 @@ public class NpcUIDisplay : MonoBehaviour
 
     public static Action activateDialogue;
 
-    private void SpawnNpc(FriendlyNPC npc)
+    private void SpawnNpcs(List<FriendlyNPC> npc)
     {
+        Button[] buttons = npcSpawner.GetComponentsInChildren<Button>();
+
         RectTransform rt = npcSpawner.GetComponent<RectTransform>();
-        Vector3 spawnPosition = GetBottomLeftCorner(rt) - new Vector3(UnityEngine.Random.Range(0, rt.rect.x), UnityEngine.Random.Range(0, rt.rect.y), 0);
-        //instanciate the button
-        GameObject g = Instantiate(npcPrefab, spawnPosition, Quaternion.identity, npcSpawner);
-        //set the commad to execute
-        Button b = g.GetComponent<Button>();
-        AddListener(b, npc.GetName());
-        //g.GetComponent<Button>().onClick.AddListener(delegate { gameStates.NpcSelected(npc.GetName()); });
+
+        while (buttons.Length < npc.Count)
+        {
+            //instanciate the button
+            GameObject g = Instantiate(npcPrefab, npcSpawner);
+            buttons = npcSpawner.GetComponentsInChildren<Button>();
+        }
+
+        if (buttons.Length >= npc.Count)
+        {
+            for (int i = 0; i < buttons.Length; i++)
+            {
+                if (i < npc.Count)
+                {
+            
+                    Vector3 spawnPosition = GetBottomLeftCorner(rt) - new Vector3(UnityEngine.Random.Range(0, rt.rect.x), UnityEngine.Random.Range(0, rt.rect.y), 0);
+                    buttons[i].gameObject.SetActive(true);
+                    //buttons[i].onClick.AddListener(delegate { gameStates.SelectPlace(cities[i]);});
+                    Button b = buttons[i];
+                    b.transform.localPosition = spawnPosition;
+                    AddListener(b, npc[i].GetName());
+                }
+                else
+                {
+                    buttons[i].gameObject.SetActive(false);
+                }
+            }
+        }
         //set the sprite
 
     }
@@ -107,7 +130,7 @@ public class NpcUIDisplay : MonoBehaviour
 
     private void OnEnable()
     {
-        GameStatesManager.spawnNpc += SpawnNpc;
+        GameStatesManager.spawnNpc += SpawnNpcs;
         GameStatesManager.startDialogue += StartDialogue;
         GameStatesManager.setTimeText += SetTimeText;
         GameStatesManager.showPlaceInfo += SetPlaceInformation;
@@ -115,7 +138,7 @@ public class NpcUIDisplay : MonoBehaviour
 
     private void OnDisable()
     {
-        GameStatesManager.spawnNpc -= SpawnNpc;
+        GameStatesManager.spawnNpc -= SpawnNpcs;
         GameStatesManager.startDialogue -= StartDialogue;
         GameStatesManager.setTimeText -= SetTimeText;
         GameStatesManager.showPlaceInfo -= SetPlaceInformation;

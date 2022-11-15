@@ -212,6 +212,9 @@ public class MisionCreator : MonoBehaviour
 
                 int randomType = Random.Range(0, 2);
 
+                if (placesToTravel[i].Equals(artPiece.museum))
+                    randomType = 0;
+
                 int randomGender = Random.Range(0, 2);
 
                 int randomName = Random.Range(0, names[randomGender].Count);

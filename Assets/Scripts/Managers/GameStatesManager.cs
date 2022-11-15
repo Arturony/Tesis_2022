@@ -38,7 +38,7 @@ public class GameStatesManager : MonoBehaviour
 
     //events
 
-    public static Action<FriendlyNPC> spawnNpc;
+    public static Action<List<FriendlyNPC>> spawnNpc;
 
     public static Action activateHUD;
 
@@ -63,6 +63,8 @@ public class GameStatesManager : MonoBehaviour
     public static Action showGameOver;
 
     public static Action showGameSuccess;
+
+    public static Action showJournalPanel;
 
     //misc variables
     private string npcName;

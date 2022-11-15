@@ -13,12 +13,14 @@ public class ShowInformation : IState
 
     public void OnEnter()
     {
-
+        //activate journal panel
+        GameStatesManager.showJournalPanel?.Invoke();
     }
 
     public void OnExit()
     {
-
+        //deactivate journal panel
+        GameStatesManager.showJournalPanel?.Invoke();
     }
 
     public void Tick()

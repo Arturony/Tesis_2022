@@ -31,12 +31,8 @@ public class GetInformation : IState
 
         GameStatesManager.setTimeText?.Invoke(mission.GetMaxTime() - mission.GetCurrenTime());
 
-        //spawn npcs
-        foreach (FriendlyNPC n in mission.GetNPCFromPlace(place))
-        {
-            //send the event to spawn the button in the spawn area and set the sprite 
-            GameStatesManager.spawnNpc?.Invoke(n);
-        }
+
+        GameStatesManager.spawnNpc?.Invoke(mission.GetNPCFromPlace(place));
 
         if (GameDataManager.instance.GetSite(place) != null)
         {

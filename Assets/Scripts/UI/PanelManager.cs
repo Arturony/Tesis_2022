@@ -33,6 +33,9 @@ public class PanelManager : MonoBehaviour
     [SerializeField]
     private GameObject losePanel;
 
+    [SerializeField]
+    private GameObject journalPanel;
+
     private void ActivateHudPanel()
     {
         if (hudPanel.activeInHierarchy)
@@ -104,6 +107,14 @@ public class PanelManager : MonoBehaviour
             losePanel.SetActive(true);
     }
 
+    private void ActivateJournalPanel()
+    {
+        if (journalPanel.activeInHierarchy)
+            journalPanel.SetActive(false);
+        else
+            journalPanel.SetActive(true);
+    }
+
     private void OnEnable()
     {
         GameStatesManager.activateHUD += ActivateHudPanel;
@@ -115,6 +126,7 @@ public class PanelManager : MonoBehaviour
         RobberCaptureUIDisplay.activateRobberPanel += ActivateRobberPanel;
         GameStatesManager.showGameSuccess += ActivateWinPanel;
         GameStatesManager.showGameOver += ActivateLosePanel;
+        GameStatesManager.showJournalPanel += ActivateJournalPanel;
     }
 
     private void OnDisable()
@@ -128,5 +140,6 @@ public class PanelManager : MonoBehaviour
         RobberCaptureUIDisplay.activateRobberPanel -= ActivateRobberPanel;
         GameStatesManager.showGameSuccess -= ActivateWinPanel;
         GameStatesManager.showGameOver -= ActivateLosePanel;
+        GameStatesManager.showJournalPanel -= ActivateJournalPanel;
     }
 }
