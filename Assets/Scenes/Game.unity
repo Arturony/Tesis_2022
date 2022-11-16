@@ -1359,6 +1359,12 @@ MonoBehaviour:
   - robber
   - site
   - country
+  npcPath: /Assets/Data/Sprites/Npc/
+  placesPath: /Assets/Data/Sprites/Places/
+  artPiecesPath: /Assets/Data/Sprites/Pieces/
+  countryPath: /Assets/Data/Sprites/Countries/
+  citiesPath: /Assets/Data/Sprites/Cities/
+  robbersPath: /Assets/Data/Sprites/Robbers/
 --- !u!114 &393951910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1712,7 +1718,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 455.87982, y: 0.0009460449}
+  m_AnchoredPosition: {x: 455.87982, y: 0.0009765625}
   m_SizeDelta: {x: 759.7662, y: -0.0026245117}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &462731335
@@ -1752,7 +1758,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 257.13672, y: -16.197}
+  m_AnchoredPosition: {x: 257.13672, y: -16.197021}
   m_SizeDelta: {x: 349.9669, y: -198.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &462731337
@@ -3544,6 +3550,7 @@ MonoBehaviour:
   gameStates: {fileID: 393951908}
   npcPrefab: {fileID: 8120806136137189760, guid: 1469f781467ab8f44917b85f337cd0c0, type: 3}
   npcSpawner: {fileID: 834015568}
+  placeImage: {fileID: 1475158138}
   npcName: {fileID: 1120668903}
   npcDialogue: {fileID: 12876639}
   timeText: {fileID: 1332079019}
@@ -3618,6 +3625,7 @@ MonoBehaviour:
   nameText: {fileID: 46441665}
   caracText: {fileID: 1401108921}
   descText: {fileID: 1089203098}
+  infoImage: {fileID: 912235304}
 --- !u!1 &788255356
 GameObject:
   m_ObjectHideFlags: 0
@@ -4089,8 +4097,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -98.43836, y: 3.3182}
-  m_SizeDelta: {x: 840.0013, y: 304.9261}
+  m_AnchoredPosition: {x: -0.0000010729, y: -124}
+  m_SizeDelta: {x: 1034.8037, y: 127.19}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &851910005
 GameObject:
@@ -4458,8 +4466,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 207.66, y: 45.338}
-  m_SizeDelta: {x: 211.1451, y: 197.6053}
+  m_AnchoredPosition: {x: 215.09, y: 73.268}
+  m_SizeDelta: {x: 329.59, y: 253.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &912235304
 MonoBehaviour:
@@ -5150,7 +5158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 257.13672, y: -16.197}
+  m_AnchoredPosition: {x: 257.13672, y: -16.197021}
   m_SizeDelta: {x: 349.9669, y: -198.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1154523503

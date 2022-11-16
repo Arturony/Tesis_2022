@@ -46,6 +46,24 @@ public class GameDataManager : MonoBehaviour
 
     private Mission currentMission;
 
+    [SerializeField]
+    public string npcPath;
+
+    [SerializeField]
+    public string placesPath;
+
+    [SerializeField]
+    public string artPiecesPath;
+
+    [SerializeField]
+    public string countryPath;
+
+    [SerializeField]
+    public string citiesPath;
+
+    [SerializeField]
+    public string robbersPath;
+
     public List<Task> LoadAllAssets()
     {
         if (hasLoaded == false)

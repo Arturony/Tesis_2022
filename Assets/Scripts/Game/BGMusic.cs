@@ -60,15 +60,21 @@ public class BGMusic : MonoBehaviour
 
     private IEnumerator WaitSeconds()
     {
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(2f);
         PlayMusic();
+    }
+
+    private IEnumerator WaitSecondsMenu()
+    {
+        yield return new WaitForSeconds(2f);
+        PlayMusicMenu();
     }
 
     public void PlayMusic()
     {
         for (int i = 0; i < audios.Count; i++)
         {
-            if (audios[i].name.Contains("music"))
+            if (audios[i].name.ToLower().Contains("background"))
             {
                 source.clip = audios[i];
                 source.Play();
@@ -76,11 +82,29 @@ public class BGMusic : MonoBehaviour
             }
         }
     }
+
+    public void PlayMusicMenu()
+    {
+        for (int i = 0; i < audios.Count; i++)
+        {
+            if (audios[i].name.ToLower().Contains("menu"))
+            {
+                source.clip = audios[i];
+                source.Play();
+                return;
+            }
+        }
+    }
+
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (scene.name.Equals("Game"))
         {
             StartCoroutine(WaitSeconds());
+        }
+        else if(scene.name.Equals("MainMenu"))
+        {
+            StartCoroutine(WaitSecondsMenu());
         }
     }
 

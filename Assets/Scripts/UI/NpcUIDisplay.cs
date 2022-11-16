@@ -17,6 +17,9 @@ public class NpcUIDisplay : MonoBehaviour
     private Transform npcSpawner;
 
     [SerializeField]
+    private Image placeImage;
+
+    [SerializeField]
     private TMP_Text npcName;
 
     [SerializeField]
@@ -32,12 +35,16 @@ public class NpcUIDisplay : MonoBehaviour
     private TMP_Text cityText;
 
     [SerializeField]
-    private TMP_Text countryText;
+    private TMP_Text countryText;    
 
     public static Action activateDialogue;
 
     private void SpawnNpcs(List<FriendlyNPC> npc)
     {
+
+        //set the place sprite
+        placeImage.sprite = IMG2Sprite.LoadNewSprite(GameDataManager.instance.placesPath + npc[0].GetPlace() + ".png");
+
         Button[] buttons = npcSpawner.GetComponentsInChildren<Button>();
 
         RectTransform rt = npcSpawner.GetComponent<RectTransform>();
@@ -60,8 +67,9 @@ public class NpcUIDisplay : MonoBehaviour
                     buttons[i].gameObject.SetActive(true);
                     //buttons[i].onClick.AddListener(delegate { gameStates.SelectPlace(cities[i]);});
                     Button b = buttons[i];
-                    b.transform.localPosition = spawnPosition;
+                    b.transform.position = spawnPosition;
                     AddListener(b, npc[i].GetName());
+                    b.GetComponent<Image>().sprite = IMG2Sprite.LoadNewSprite(GameDataManager.instance.npcPath + npc[i].GetGender().ToString() + "/" + npc[i].GetName() + ".png");
                 }
                 else
                 {
@@ -69,7 +77,6 @@ public class NpcUIDisplay : MonoBehaviour
                 }
             }
         }
-        //set the sprite
 
     }
 

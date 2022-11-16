@@ -1445,9 +1445,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8509947113297658248, guid: 0bb27592cf2415d48aed1aa16c59a157, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8509947113297658249, guid: 0bb27592cf2415d48aed1aa16c59a157, type: 3}
       propertyPath: names.Array.size
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8509947113297658249, guid: 0bb27592cf2415d48aed1aa16c59a157, type: 3}
+      propertyPath: names.Array.data[0]
+      value: background_music
+      objectReference: {fileID: 0}
+    - target: {fileID: 8509947113297658249, guid: 0bb27592cf2415d48aed1aa16c59a157, type: 3}
+      propertyPath: names.Array.data[1]
+      value: menu_music
       objectReference: {fileID: 0}
     - target: {fileID: 8509947113297658251, guid: 0bb27592cf2415d48aed1aa16c59a157, type: 3}
       propertyPath: m_Name

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,7 +46,7 @@ public class FriendlyNPC
             {
                 if(robberValues.Count > 0)
                 {
-                    int temp = Random.Range(0, robberValues.Count);
+                    int temp = UnityEngine.Random.Range(0, robberValues.Count);
                     robberTags.Add(robberValues[temp]);
                     robberValues.RemoveAt(temp);
                 }
@@ -57,7 +58,7 @@ public class FriendlyNPC
             {
                 if(diale.Count > 0)
                 {
-                    int temp = Random.Range(0, diale.Count);
+                    int temp = UnityEngine.Random.Range(0, diale.Count);
                     dialogues.Add(diale[temp]);
                     diale.RemoveAt(temp);
                 }
@@ -80,7 +81,7 @@ public class FriendlyNPC
         {
             if(dial.Count > 0)
             {
-                int temp = Random.Range(0, dial.Count);
+                int temp = UnityEngine.Random.Range(0, dial.Count);
                 dialogues.Add(dial[temp]);
                 dial.RemoveAt(temp);
             }
@@ -91,11 +92,20 @@ public class FriendlyNPC
 
         string country = "";
 
-        if (GameDataManager.instance.GetSite(placeToTell) != null)
-            country = GameDataManager.instance.GetSite(placeToTell).country;
-        else
-            country = GameDataManager.instance.GetMuseum(placeToTell).country;
-
+        try
+        {
+            if (GameDataManager.instance.GetSite(placeToTell) != null)
+                country = GameDataManager.instance.GetSite(placeToTell).country;
+            else
+                country = GameDataManager.instance.GetMuseum(placeToTell).country;
+        }
+        catch(Exception e)
+        {
+            Debug.Log(placeToTell);
+            List<string> a = GameDataManager.instance.GetMuseumNames();
+            foreach (string s in a)
+                Debug.Log(s);
+        }
         places.Add(country);
 
         commandValue.Add(GameDataManager.instance.GetCommands()[2], places);
@@ -108,7 +118,7 @@ public class FriendlyNPC
         {
             if (dial.Count > 0)
             {
-                int temp = Random.Range(0, dial.Count);
+                int temp = UnityEngine.Random.Range(0, dial.Count);
                 dialogues.Add(dial[temp]);
                 dial.RemoveAt(temp);
             }
@@ -132,7 +142,7 @@ public class FriendlyNPC
 
     public string GetRandomDialogue()
     {
-        int indx = Random.Range(0, dialogues.Count);
+        int indx = UnityEngine.Random.Range(0, dialogues.Count);
         return dialogues[indx];
     }
 

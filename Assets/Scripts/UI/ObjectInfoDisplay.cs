@@ -35,6 +35,9 @@ public class ObjectInfoDisplay : MonoBehaviour
     [SerializeField]
     private TMP_Text descText;
 
+    [SerializeField]
+    private Image infoImage;
+
     public static Action activateObjectPanel;
     public void ShowContries()
     {
@@ -268,6 +271,7 @@ public class ObjectInfoDisplay : MonoBehaviour
         caracText.text = "";
         descText.text = c.description;
         buttonsContainer.gameObject.SetActive(true);
+        infoImage.sprite = IMG2Sprite.LoadNewSprite(GameDataManager.instance.countryPath + name + ".png");
         SpawnCities(name);
     }
 
@@ -279,6 +283,7 @@ public class ObjectInfoDisplay : MonoBehaviour
         caracText.text = "Pais: " + c.country;
         descText.text = c.description;
         buttonsContainer.gameObject.SetActive(true);
+        infoImage.sprite = IMG2Sprite.LoadNewSprite(GameDataManager.instance.citiesPath + name + ".png");
         SpawnSites(name);
     }
 
@@ -290,6 +295,7 @@ public class ObjectInfoDisplay : MonoBehaviour
         caracText.text = "Pais: " + c.country + " \nCiudad: " + c.city + " \nDireccion: " + c.location;
         descText.text = c.description;
         buttonsContainer.gameObject.SetActive(false);
+        infoImage.sprite = IMG2Sprite.LoadNewSprite(GameDataManager.instance.placesPath + name + ".png");
         //SpawnCities(name);
     }
 
@@ -301,6 +307,7 @@ public class ObjectInfoDisplay : MonoBehaviour
         caracText.text = "Pais: " + c.country + " \nCiudad: " + c.city + " \nDireccion: " + c.location;
         descText.text = c.description;
         buttonsContainer.gameObject.SetActive(true);
+        infoImage.sprite = IMG2Sprite.LoadNewSprite(GameDataManager.instance.placesPath + name + ".png");
         SpawnArtPieces(name);
     }
 
@@ -312,6 +319,7 @@ public class ObjectInfoDisplay : MonoBehaviour
         caracText.text = "Creador: " + c.creator + " \nFecha: " + c.date + " \nOrigen: " + c.origin + " \nMuseo: " + c.museum;
         descText.text = c.description;
         buttonsContainer.gameObject.SetActive(false);
+        infoImage.sprite = IMG2Sprite.LoadNewSprite(GameDataManager.instance.artPiecesPath + name + ".png");
     }
 
     private void SetRobbersInfo(string name)
@@ -327,6 +335,7 @@ public class ObjectInfoDisplay : MonoBehaviour
         caracText.text += "- " + c.tags[c.tags.Count - 1];
         descText.text = c.description;
         buttonsContainer.gameObject.SetActive(false);
+        infoImage.sprite = IMG2Sprite.LoadNewSprite(GameDataManager.instance.robbersPath + name + ".png");
     }
 
     void AddListenerCountries(Button b, string value)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -61,11 +62,11 @@ public class MisionCreator : MonoBehaviour
 
         placesToTravel = new List<string>();
 
-        int numberOfCountries = Random.Range(minCountryStops, contries.Count);
+        int numberOfCountries = UnityEngine.Random.Range(minCountryStops, contries.Count);
 
         for (int i = 0; i < numberOfCountries; i++)
         {
-            int randomIndice = Random.Range(0, contries.Count-1);
+            int randomIndice = UnityEngine.Random.Range(0, contries.Count-1);
 
             string name = contries[randomIndice];
 
@@ -79,11 +80,11 @@ public class MisionCreator : MonoBehaviour
 
             List<string> cities = new List<string>(c.cities);
 
-            int numberCities = Random.Range(1, maxCityStops);
+            int numberCities = UnityEngine.Random.Range(1, maxCityStops);
             //check the country cities and select some
             for (int j = 0; j < numberCities; j++)
             {
-                randomIndice = Random.Range(0, cities.Count);
+                randomIndice = UnityEngine.Random.Range(0, cities.Count);
 
                 name = cities[randomIndice];
 
@@ -93,15 +94,15 @@ public class MisionCreator : MonoBehaviour
 
                 City city = GameDataManager.instance.GetCity(name);
 
-                int numberMuseums = Random.Range(1, maxMuseumStops);
-                int numberPlaces = Random.Range(minPlacesStops, maxPlacesStops);
+                int numberMuseums = UnityEngine.Random.Range(1, maxMuseumStops);
+                int numberPlaces = UnityEngine.Random.Range(minPlacesStops, maxPlacesStops);
 
                 List<string> museums = new List<string>(city.museums);
                 List<string> places = new List<string>(city.interestPlaces);
 
                 for (int z = 0; z < numberMuseums; z++)
                 {
-                    randomIndice = Random.Range(0, museums.Count);
+                    randomIndice = UnityEngine.Random.Range(0, museums.Count);
 
                     name = museums[randomIndice];
 
@@ -112,7 +113,7 @@ public class MisionCreator : MonoBehaviour
 
                 for (int w = 0; w < numberPlaces; w++)
                 {
-                    randomIndice = Random.Range(0, places.Count);
+                    randomIndice = UnityEngine.Random.Range(0, places.Count);
 
                     name = places[randomIndice];
 
@@ -122,8 +123,6 @@ public class MisionCreator : MonoBehaviour
                 }
             }
         }
-        foreach (string s in placesToTravel)
-            Debug.Log(s);
     }
 
     public void MaxMissionTime()
@@ -167,12 +166,31 @@ public class MisionCreator : MonoBehaviour
                 break;
         }
 
-        int rand = Random.Range(0, m.piecesId.Count);
+        try
+        {
+            int rand = UnityEngine.Random.Range(0, m.piecesId.Count);
+            string artName = m.piecesId[rand];
 
-        string artName = m.piecesId[rand];
+            artPiece = GameDataManager.instance.GetArtPiece(artName);
+            placesToTravel.Add(artPiece.museum);
 
-        artPiece = GameDataManager.instance.GetArtPiece(artName);
-        placesToTravel.Add(artPiece.museum);
+            City c = GameDataManager.instance.GetCity(citiesPath[0]);
+            City c1 = GameDataManager.instance.GetCity(m.city);
+
+            LatLng act = new LatLng(c.latitude, c.longitude);
+            LatLng prev = new LatLng(c1.latitude, c1.longitude);
+            double dist = HarvesineDistance.HaversineDistance(prev, act);
+            double timeTo = dist / flightSpeed;
+            time += timeTo;
+
+        }
+        catch(Exception e)
+        {
+            foreach (string s in placesToTravel)
+                Debug.Log(s);
+        }
+
+        
     }
 
     public void PickRobber()
@@ -204,20 +222,20 @@ public class MisionCreator : MonoBehaviour
                 nextPlace = placesToTravel[i + 1];
             }
 
-            int numOfNpc = Random.Range(minNumNpc, maxNumNpc);
+            int numOfNpc = UnityEngine.Random.Range(minNumNpc, maxNumNpc);
 
             for(int j = 0; j < numOfNpc; j++)
             {
                 //get two random numbers to determine type and gender
 
-                int randomType = Random.Range(0, 2);
+                int randomType = UnityEngine.Random.Range(0, 2);
 
                 if (placesToTravel[i].Equals(artPiece.museum))
                     randomType = 0;
 
-                int randomGender = Random.Range(0, 2);
+                int randomGender = UnityEngine.Random.Range(0, 2);
 
-                int randomName = Random.Range(0, names[randomGender].Count);
+                int randomName = UnityEngine.Random.Range(0, names[randomGender].Count);
                 //get the attributes and create npc
 
                 //npc type
@@ -236,14 +254,14 @@ public class MisionCreator : MonoBehaviour
         {
             if(!placesToTravel.Contains(s))
             {
-                int numOfNpc = Random.Range(minNumNpc, maxNumNpc);
+                int numOfNpc = UnityEngine.Random.Range(minNumNpc, maxNumNpc);
                 for (int j = 0; j < numOfNpc; j++)
                 {
                     //get two random numbers to determine type and gender
 
-                    int randomGender = Random.Range(0, 2);
+                    int randomGender = UnityEngine.Random.Range(0, 2);
 
-                    int randomName = Random.Range(0, names[randomGender].Count);
+                    int randomName = UnityEngine.Random.Range(0, names[randomGender].Count);
                     //get the attributes and create npc
 
                     //npc type
@@ -263,14 +281,14 @@ public class MisionCreator : MonoBehaviour
         {
             if (!placesToTravel.Contains(s))
             {
-                int numOfNpc = Random.Range(minNumNpc, maxNumNpc);
+                int numOfNpc = UnityEngine.Random.Range(minNumNpc, maxNumNpc);
                 for (int j = 0; j < numOfNpc; j++)
                 {
                     //get two random numbers to determine type and gender
 
-                    int randomGender = Random.Range(0, 2);
+                    int randomGender = UnityEngine.Random.Range(0, 2);
 
-                    int randomName = Random.Range(0, names[randomGender].Count);
+                    int randomName = UnityEngine.Random.Range(0, names[randomGender].Count);
                     //get the attributes and create npc
 
                     //npc type
