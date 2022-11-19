@@ -60,13 +60,13 @@ public class BGMusic : MonoBehaviour
 
     private IEnumerator WaitSeconds()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         PlayMusic();
     }
 
     private IEnumerator WaitSecondsMenu()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         PlayMusicMenu();
     }
 
@@ -98,6 +98,8 @@ public class BGMusic : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        source.Stop();
+
         if (scene.name.Equals("Game"))
         {
             StartCoroutine(WaitSeconds());

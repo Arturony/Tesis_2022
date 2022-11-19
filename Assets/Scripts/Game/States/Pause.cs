@@ -7,6 +7,7 @@ public class Pause : IState
     private GameStatesManager manager;
 
     private float pastTimeScale;
+
     public Pause(GameStatesManager manager)
     {
         this.manager = manager;
@@ -25,11 +26,6 @@ public class Pause : IState
 
     public void Tick()
     {
-        //show panels and stuff
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            manager.IsGamePaused = false;
-            //manager.GetPausePanel().SetActive(false);
-        }
+        //do pause stuff idk
     }
 }

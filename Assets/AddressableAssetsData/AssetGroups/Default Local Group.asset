@@ -25,6 +25,10 @@ MonoBehaviour:
     m_Address: menu_music
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 47cf397828e09794d922ff625615d6eb
+    m_Address: Assets/Data/Art Pieces
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 48e02445e942dd74faee89c9013df873, type: 2}
   m_SchemaSet:
