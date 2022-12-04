@@ -66,6 +66,8 @@ public class GameStatesManager : MonoBehaviour
 
     public static Action showJournalPanel;
 
+    public static Action activateCameraScrolling;
+
     //misc variables
     private string npcName;
     private string placeName;
@@ -94,6 +96,11 @@ public class GameStatesManager : MonoBehaviour
 
         At(pause, getInformation, GettingInformation());
         At(pause, showInformation, ShowingInformation());
+        At(pause, move, ToMove());
+        At(pause, travel, ToTravel());
+        At(pause, capture, ToCapture());
+        At(pause, gameOver, GameOverTransition());
+        At(pause, gameClear, GameWonTransition());
 
         At(getInformation, showInformation, ShowingInformation());
         At(showInformation, getInformation, GettingInformation());
@@ -108,9 +115,11 @@ public class GameStatesManager : MonoBehaviour
         At(travel, getInformation, GettingInformation());
 
         At(travel, gameOver, GameOverTransition());
+        At(move, gameOver, GameOverTransition());
 
         At(capture, gameOver, GameOverTransition());
         At(capture, gameClear, GameWonTransition());
+        At(capture, getInformation, GettingInformation());
 
         //initial state
         stateMachine.SetState(gameStart);

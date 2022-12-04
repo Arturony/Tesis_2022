@@ -36,13 +36,21 @@ public class FriendlyNPC
 
         Dictionary<string, List<string>> commandValue = new Dictionary<string, List<string>>();
 
-        if(this.type == NPCType.Helpful)
+        //all the dialogues a npc can have
+
+        int total = UnityEngine.Random.Range(2, 3);
+
+        if (this.type == NPCType.Helpful)
         {
             List<string> robberValues = new List<string>(GameDataManager.instance.GetCurrentMission().GetRobber().tags);
 
             List<string> robberTags = new List<string>();
 
-            for(int i = 0; i < robberValues.Count || i < 4; i++)
+            int totalRobber = UnityEngine.Random.Range(1, total);
+
+            total -= totalRobber;
+
+            for (int i = 0; i < robberValues.Count || i < 4; i++)
             {
                 if(robberValues.Count > 0)
                 {
@@ -54,7 +62,7 @@ public class FriendlyNPC
 
             //get four random tags for the robber
             List<string> diale = new List<string>(GameDataManager.instance.GetDialogueByTag(GameDataManager.instance.GetCommands()[0].ToString()));
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < totalRobber; i++)
             {
                 if(diale.Count > 0)
                 {
@@ -74,10 +82,10 @@ public class FriendlyNPC
         places.Add(placeToTell);
         commandValue.Add(GameDataManager.instance.GetCommands()[1], places);
 
-        //List<string> dial = GameDataManager.instance.GetDialogueByTag(type.ToString() + placeToTell);
-        List<string> dial = new List<string>(GameDataManager.instance.GetDialogueByTag(GameDataManager.instance.GetCommands()[1].ToString()));
+        List<string> dial = new List<string>(GameDataManager.instance.GetDialogueByTag(type.ToString()));
+        //List<string> dial = new List<string>(GameDataManager.instance.GetDialogueByTag(GameDataManager.instance.GetCommands()[1].ToString()));
 
-        for (int i = 0; i < 2 || i < dial.Count; i++)
+        for (int i = 0; i < total || i < dial.Count; i++)
         {
             if(dial.Count > 0)
             {
@@ -95,9 +103,9 @@ public class FriendlyNPC
         try
         {
             if (GameDataManager.instance.GetSite(placeToTell) != null)
-                country = GameDataManager.instance.GetSite(placeToTell).country;
+                country = GameDataManager.instance.GetSite(placeToTell).city;
             else
-                country = GameDataManager.instance.GetMuseum(placeToTell).country;
+                country = GameDataManager.instance.GetMuseum(placeToTell).city;
         }
         catch(Exception e)
         {
@@ -111,8 +119,12 @@ public class FriendlyNPC
         commandValue.Add(GameDataManager.instance.GetCommands()[2], places);
 
 
-        //dial = GameDataManager.instance.GetDialogueByTag(type.ToString() + GameDataManager.instance.GetSite(placeToTell).country);
-        dial = new List<string>(GameDataManager.instance.GetDialogueByTag(GameDataManager.instance.GetCommands()[2].ToString()));
+        /*dial = new List<string>(GameDataManager.instance.GetDialogueByTag(type.ToString()));
+        //dial = new List<string>(GameDataManager.instance.GetDialogueByTag(GameDataManager.instance.GetCommands()[2].ToString()));
+
+        int totalCity = UnityEngine.Random.Range(0, total);
+
+        total -= totalPlaces;
 
         for (int i = 0; i < 2 || i < dial.Count; i++)
         {
@@ -122,7 +134,7 @@ public class FriendlyNPC
                 dialogues.Add(dial[temp]);
                 dial.RemoveAt(temp);
             }
-        }
+        }*/
 
         for(int i = 0; i < dialogues.Count; i++)
         {

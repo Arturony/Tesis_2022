@@ -1,0 +1,9 @@
+{
+    "name": "Plaza de Bolivar",
+    "description": "Plaza principal de la ciudad de Bogotá y de Colombia. Está ubicada en el centro histórico de la ciudad, entre las carreras Séptima y Octava con calles Décima y Once",
+    "location": "location",
+    "id": "Plaza de Bolivar",
+    "country": "Colombia",
+    "city": "Bogota",
+    "type": "1"
+}

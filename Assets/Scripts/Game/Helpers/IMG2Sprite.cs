@@ -12,12 +12,20 @@ public static class IMG2Sprite
     public static Sprite LoadNewSprite(string filePath, float PixelsPerUnit = 100.0f, SpriteMeshType spriteType = SpriteMeshType.Tight)
     {
 
-        // Load a PNG or JPG image from disk to a Texture2D, assign this texture to a new sprite and return its reference
-        string path = System.IO.Directory.GetCurrentDirectory() + filePath;
-        Texture2D SpriteTexture = LoadTexture(path);
-        Sprite NewSprite = Sprite.Create(SpriteTexture, new Rect(0, 0, SpriteTexture.width, SpriteTexture.height), new Vector2(0, 0), PixelsPerUnit, 0, spriteType);
+        try
+        {
+            // Load a PNG or JPG image from disk to a Texture2D, assign this texture to a new sprite and return its reference
+            string path = System.IO.Directory.GetCurrentDirectory() + filePath;
+            Texture2D SpriteTexture = LoadTexture(path);
+            Sprite NewSprite = Sprite.Create(SpriteTexture, new Rect(0, 0, SpriteTexture.width, SpriteTexture.height), new Vector2(0, 0), PixelsPerUnit, 0, spriteType);
 
-        return NewSprite;
+            return NewSprite;
+        }
+        catch
+        {
+            Debug.Log(filePath);
+            return null;
+        }
     }
 
     public static Sprite ConvertTextureToSprite(Texture2D texture, float PixelsPerUnit = 100.0f, SpriteMeshType spriteType = SpriteMeshType.Tight)

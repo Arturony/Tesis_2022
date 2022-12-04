@@ -228,7 +228,7 @@ public class MisionCreator : MonoBehaviour
             {
                 //get two random numbers to determine type and gender
 
-                int randomType = UnityEngine.Random.Range(0, 2);
+                int randomType = 0;
 
                 if (placesToTravel[i].Equals(artPiece.museum))
                     randomType = 0;

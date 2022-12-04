@@ -28,6 +28,7 @@ public class CityManager : MonoBehaviour
                     string text = await FileUtil.ReadAllTextAsync(s);
                     City c = JsonConvert.DeserializeObject<City>(text);
                     cities.Add(c);
+                    Debug.Log(c);
                 }
             }
             await Task.WhenAll(writeTaskList);

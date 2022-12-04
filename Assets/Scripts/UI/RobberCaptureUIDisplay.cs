@@ -46,6 +46,7 @@ public class RobberCaptureUIDisplay : MonoBehaviour
                     AddListener(b, robs[i]);
 
                     // set sprite
+                    b.GetComponentInChildren<Image>().sprite = IMG2Sprite.LoadNewSprite(GameDataManager.instance.robbersPath + robs[i] + ".png");
                 }
                 else if (i >= robs.Count)
                 {

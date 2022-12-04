@@ -1,0 +1,14 @@
+{
+    "country": [
+      "Vi a alguien comprando una guía de turismo para [country].",
+      "[country] es un pais muy interesante."
+    ],
+    "site": [
+      "Vi a alguien comprando una guía de turismo para [site].",
+      "[site] es un lugar muy interesante."
+    ],
+    "robber": [
+      "Vi a alguien [robber] y [robber] caminando por aquí hace poco. Se veía sospechoso.",
+      "Una persona [robber] actuando muy raro. Parecía que escondía algo."
+    ]
+  }

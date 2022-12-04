@@ -1,0 +1,26 @@
+{
+    "Misc": [
+      "Me gusta vivir aquí en [city], es muy agradable",
+      "Los lugares de [city] son muy interesantes, no crees?",
+      "Venir a de vacaciones a [city] fue una muy buena idea",
+      "Hay tanto que ver aquí en [city] que no crea que pueda ir a todos lados!",
+      "[place] es un gran lugar para pasar el tiempo",
+      "Vengo todos los días a [place] porque siempre hay algo nuevo que ver",
+      "Me gusta vivir cerca de [place] ya que puedo venir cada que quiera"
+    ],
+    "Helpful": [
+      "Vi a alguien comprando una guía de turismo para [city].",
+      "Ojalá pudiera ir de vacaciones a [city]...",
+      "Alguien estaba hablando de ir a [place] pero no sé donde queda, podrías decirme?",
+      "Cómo sería vivir en [city]?",
+      "A alguien se le cayeron unos tiquetes para [city], me pregunto por qué tendría tanta prisa",
+      "Una persona estaba pidiendo un taxi para porque quería ir a [place], aunque no creo que el taxi pueda llegar tan lejos"
+    ],
+    "robber": [
+      "Vi a alguien [robber caminando por aquí hace poco. Se veía sospechoso.",
+      "Vi a una persona [robber] actuando muy raro. Parecía que escondía algo.",
+      "Alguien sospechoso? Ahora que lo pienso... un sujeto [robber] pasó caminando muy rápido",
+      "Si vieron a esa persona [robber] que pasó corriendo? Casi me atropella",
+      "No puede ser, alguien [robber] me quitó el taxi que había parado. El colmo"
+    ]
+  }

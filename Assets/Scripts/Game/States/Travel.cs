@@ -18,12 +18,14 @@ public class Travel : IState
     {
         //show travel panels
         GameStatesManager.showTravelUI?.Invoke();
+        GameStatesManager.activateCameraScrolling?.Invoke();
     }
 
     public void OnExit()
     {
         //disable panels
         TravelUIDisplay.activateTravelPanel?.Invoke();
+        GameStatesManager.activateCameraScrolling?.Invoke();
     }
 
     public void Tick()

@@ -1,0 +1,17 @@
+{
+	"name": "Paris",
+	"description": "París, la capital de Francia, es una importante ciudad europea y un centro mundial del arte, la moda, la gastronomía y la cultura.",
+	"interestPlaces": [
+		"Torre Eiffel",
+		"Catedral de Notre Dame",
+		"Aeropuerto de Paris"
+	],
+	"museums": [
+		"Museo del Louvre",
+		"Center Georges Pompidou"
+	],
+	"latitude": 48.864716,
+	"longitude": 2.349014,
+	"id": "Paris",
+	"country":"Francia"
+}

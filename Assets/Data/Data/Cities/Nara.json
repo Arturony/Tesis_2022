@@ -1,0 +1,17 @@
+{
+	"name": "Nara",
+	"description": "Nara es la capital de la prefectura de Nara en Japón, en la zona sur central de Honshu. La ciudad tiene importantes templos y obras de arte que datan del siglo VIII, cuando fue la capital de Japón.",
+	"interestPlaces": [
+		"Todai-ji",
+		"Parque de Nara",
+		"Aeropuerto de Nara"
+	],
+	"museums": [
+		"Nara National Museum",
+		"Naramachi museum"
+	],
+	"latitude": 34.68505,
+	"longitude": 135.80485,
+	"id": "Nara",
+	"country":"Japon"
+}

@@ -34,7 +34,7 @@ public class PauseManager : MonoBehaviour
     public void Pauses()
     {
         pastScale = Time.timeScale;
-        Time.timeScale = 0f;
+        //Time.timeScale = 0f;
         pausePanel.SetActive(true);
         paused = true;
         statesManager.IsGamePaused = true;
@@ -42,7 +42,7 @@ public class PauseManager : MonoBehaviour
 
     public void UnPause()
     {
-        Time.timeScale = pastScale;
+        //Time.timeScale = pastScale;
         pausePanel.SetActive(false);
         paused = false;
         statesManager.IsGamePaused = false;
@@ -50,7 +50,7 @@ public class PauseManager : MonoBehaviour
 
     public void UnPauseExit()
     {
-        Time.timeScale = pastScale;
+        //Time.timeScale = pastScale;
         pausePanel.SetActive(false);
         paused = false;
         statesManager.IsGamePaused = false;
