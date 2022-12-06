@@ -5,15 +5,15 @@ Proyect Developed on Unity.
 Data extracted with a script from Google Arts & Culture: https://artsandculture.google.com/
 ![image](https://user-images.githubusercontent.com/42653275/205780222-813e318a-a3f3-4303-9f55-1049b6a03645.png)
 
-Description
+# Description
 
 This proyect want to teach about the different art pieces, museums and places around the world in a interactive way. Inspired by the popular series "Where in the world is carmen sandiego" the player works as an investigator for a international agency in order to stop various criminals traveling the world. While in the move, the player can learn and see some of the most important interest places and museums of the different countries that are that are available.
 
-Objective
+# Objective
 
 The main focus was to use real world data, extracted from Google Arts and Culture, for it to provide meaningful context for the player. The files the game uses are complete detached from the internal stucture. So interested parties can modify and create new version that fit their interests. From which contries are present, to the dialogues, npc and criminals. Everything is loaded dynamically so it can be moddable.
 
-Modding Guide
+# Modding Guide
 
 In order to add new content, there are some guidelines that need to be followed in order to achieve it.
 
