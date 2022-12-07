@@ -31,6 +31,6 @@ To add an NPC, modify the "Assets/Data/Names/names.json" file and add the name o
 
 To add a Robber, follow the files on "Assets/Data/Robbers"
 
-To modify the dialogues, open "Assets/Data/Dialogues/dialogues.json". Misc are dialogues that don't give hints to the player. Helpful gives hints about the next place to travel. [city] will be replaced for the next city, and [place] for the name of the next place in that city. robber gives information about the criminal and [robber] will be replaced by one random attribute of the robber.
+To modify the dialogues, open "Assets/Data/Dialogues/dialogues.json". Misc are dialogues that don't give hints to the player. Helpful gives hints about the next place to travel. [city] will be replaced for the next city, and [place] for the name of the next place in that city. robber gives information about the criminal and [robber] will be replaced by one random attribute of the robber. [artPiece] command is to reffer for a random art piece of a museum that you need to visit next.
 
 Finally, add an image with the same name used on the "name" fields of the files in the respective folders of "Assets/Data/Sprites". The image needs to be of .png format or else it won't be loaded.
