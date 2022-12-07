@@ -40,6 +40,7 @@ public class FriendlyNPC
 
         int total = UnityEngine.Random.Range(2, 3);
 
+        //robber dialogues
         if (this.type == NPCType.Helpful)
         {
             List<string> robberValues = new List<string>(GameDataManager.instance.GetCurrentMission().GetRobber().tags);
@@ -50,7 +51,7 @@ public class FriendlyNPC
 
             total -= totalRobber;
 
-            for (int i = 0; i < robberValues.Count || i < 4; i++)
+            for (int i = 0; i < robberValues.Count && i < 4; i++)
             {
                 if(robberValues.Count > 0)
                 {
@@ -73,71 +74,199 @@ public class FriendlyNPC
             }
 
             commandValue.Add(GameDataManager.instance.GetCommands()[0], robberTags);
-        }
 
-        string placeToTell = type == NPCType.Helpful ? nextPlace: place;
+            string placeToTell = nextPlace;
 
-        //get two random descriptions of the place according to the type of the npc
-        List<string> places = new List<string>();
-        places.Add(placeToTell);
-        commandValue.Add(GameDataManager.instance.GetCommands()[1], places);
+            List<string> cityDialogues = new List<string>();
+            List<string> placeDialogues = new List<string>();
+            List<string> piecesDialogues = new List<string>();
 
-        List<string> dial = new List<string>(GameDataManager.instance.GetDialogueByTag(type.ToString()));
-        //List<string> dial = new List<string>(GameDataManager.instance.GetDialogueByTag(GameDataManager.instance.GetCommands()[1].ToString()));
-
-        for (int i = 0; i < total || i < dial.Count; i++)
-        {
-            if(dial.Count > 0)
+            //separate the dialogues
+            foreach (string s in GameDataManager.instance.GetDialogueByTag(type.ToString()))
             {
-                int temp = UnityEngine.Random.Range(0, dial.Count);
-                dialogues.Add(dial[temp]);
-                dial.RemoveAt(temp);
+
+                if (s.Contains("[" + GameDataManager.instance.GetCommands()[2] + "]"))
+                {
+                    //city command
+                    cityDialogues.Add(s);
+                }
+                else if (s.Contains("[" + GameDataManager.instance.GetCommands()[1] + "]"))
+                {
+                    //place command
+                    placeDialogues.Add(s);
+                }
+                else if (s.Contains("[" + GameDataManager.instance.GetCommands()[3] + "]"))
+                {
+                    //piece command
+                    piecesDialogues.Add(s);
+                }
             }
-        }
 
-        //get two country descriptions according to the type of the npc
-        places = new List<string>();
 
-        string country = "";
+            //check if the place is a museum or a place. if is a museum get a random art piece and a dialog
+            //do it only if it is a helpful npc
+            List<string> places = new List<string>();
+            Museum m = GameDataManager.instance.GetMuseum(placeToTell);
+            if (m != null)
+            {
+                //get the dialogues for the art pieces
+                places = new List<string>();
+                places.Add(m.piecesId[UnityEngine.Random.Range(0, m.piecesId.Count)]);
 
-        try
-        {
+                commandValue.Add(GameDataManager.instance.GetCommands()[3], places);
+
+                List<string> dial = new List<string>(piecesDialogues);
+                //List<string> dial = new List<string>(GameDataManager.instance.GetDialogueByTag(GameDataManager.instance.GetCommands()[1].ToString()));
+
+                int totalDialogue = UnityEngine.Random.Range(1, total);
+
+                total -= totalDialogue;
+
+                for (int i = 0; i < totalDialogue && i < dial.Count; i++)
+                {
+                    if (dial.Count > 0)
+                    {
+                        int temp = UnityEngine.Random.Range(0, dial.Count);
+                        dialogues.Add(dial[temp]);
+                        dial.RemoveAt(temp);
+                    }
+                }
+            }
+
+            //add the place only if is an interest place
+
             if (GameDataManager.instance.GetSite(placeToTell) != null)
-                country = GameDataManager.instance.GetSite(placeToTell).city;
-            else
-                country = GameDataManager.instance.GetMuseum(placeToTell).city;
-        }
-        catch(Exception e)
-        {
-            Debug.Log(placeToTell);
-            List<string> a = GameDataManager.instance.GetMuseumNames();
-            foreach (string s in a)
-                Debug.Log(s);
-        }
-        places.Add(country);
-
-        commandValue.Add(GameDataManager.instance.GetCommands()[2], places);
-
-
-        /*dial = new List<string>(GameDataManager.instance.GetDialogueByTag(type.ToString()));
-        //dial = new List<string>(GameDataManager.instance.GetDialogueByTag(GameDataManager.instance.GetCommands()[2].ToString()));
-
-        int totalCity = UnityEngine.Random.Range(0, total);
-
-        total -= totalPlaces;
-
-        for (int i = 0; i < 2 || i < dial.Count; i++)
-        {
-            if (dial.Count > 0)
             {
-                int temp = UnityEngine.Random.Range(0, dial.Count);
-                dialogues.Add(dial[temp]);
-                dial.RemoveAt(temp);
+                places = new List<string>();
+                places.Add(placeToTell);
+                commandValue.Add(GameDataManager.instance.GetCommands()[1], places);
+
+                List<string> dial = new List<string>(placeDialogues);
+                //List<string> dial = new List<string>(GameDataManager.instance.GetDialogueByTag(GameDataManager.instance.GetCommands()[1].ToString()));
+
+                int totalDialogue = UnityEngine.Random.Range(1, total);
+
+                total -= totalDialogue;
+
+                for (int i = 0; i < totalDialogue && i < dial.Count; i++)
+                {
+                    if (dial.Count > 0)
+                    {
+                        int temp = UnityEngine.Random.Range(0, dial.Count);
+                        dialogues.Add(dial[temp]);
+                        dial.RemoveAt(temp);
+                    }
+                }
             }
-        }*/
+
+            //get the city of the place. and the city of the current place
+
+            places = new List<string>();
+
+            string city = "";
+
+            string currCity = "";
+
+            try
+            {
+                if (GameDataManager.instance.GetSite(placeToTell) != null)
+                    city = GameDataManager.instance.GetSite(placeToTell).city;
+                else
+                    city = GameDataManager.instance.GetMuseum(placeToTell).city;
+
+                if (GameDataManager.instance.GetSite(place) != null)
+                    currCity = GameDataManager.instance.GetSite(place).city;
+                else
+                    currCity = GameDataManager.instance.GetMuseum(place).city;
+            }
+            catch (Exception e)
+            {
+                Debug.Log(placeToTell);
+                List<string> a = GameDataManager.instance.GetMuseumNames();
+                foreach (string s in a)
+                    Debug.Log(s);
+            }
+
+            //if the npc is helpful and is the same city, don't add it
+
+            if (!city.Equals(currCity))
+            {
+                places.Add(city);
+
+                commandValue.Add(GameDataManager.instance.GetCommands()[2], places);
+                List<string> dial = new List<string>(cityDialogues);
+                //List<string> dial = new List<string>(GameDataManager.instance.GetDialogueByTag(GameDataManager.instance.GetCommands()[1].ToString()));
+                int totalDialogue = UnityEngine.Random.Range(1, total);
+                for (int i = 0; i < totalDialogue && i < dial.Count; i++)
+                {
+                    if (dial.Count > 0)
+                    {
+                        int temp = UnityEngine.Random.Range(0, dial.Count);
+                        dialogues.Add(dial[temp]);
+                        dial.RemoveAt(temp);
+                    }
+                }
+            }
+        }
+        else
+        {
+            //add the place command
+            List<string> places = new List<string>();
+
+            places = new List<string>();
+            places.Add(place);
+            commandValue.Add(GameDataManager.instance.GetCommands()[1], places);
+
+            //add the city command
+            string city = "";
+
+            if (GameDataManager.instance.GetSite(place) != null)
+                city = GameDataManager.instance.GetSite(place).city;
+            else
+                city = GameDataManager.instance.GetMuseum(place).city;
+
+            places.Add(city);
+
+            commandValue.Add(GameDataManager.instance.GetCommands()[2], places);
+
+            List<string> dial = new List<string>(GameDataManager.instance.GetDialogueByTag(type.ToString()));
+            dial = new List<string>(GameDataManager.instance.GetDialogueByTag(type.ToString()));
+
+            //List<string> dial = new List<string>(GameDataManager.instance.GetDialogueByTag(GameDataManager.instance.GetCommands()[1].ToString()));
+            for (int i = 0; i < total && i < dial.Count; i++)
+            {
+                if (dial.Count > 0)
+                {
+                    int temp = UnityEngine.Random.Range(0, dial.Count);
+                    dialogues.Add(dial[temp]);
+                    dial.RemoveAt(temp);
+                }
+            }
+        }
+
+
+
+        //replace the commands with the actual values
 
         for(int i = 0; i < dialogues.Count; i++)
         {
+            try
+            {
+                dialogues[i] = TextHelper.ReplaceTags(dialogues[i], GameDataManager.instance.GetStaringKey(), GameDataManager.instance.GetEndingKey(), commandValue);
+            }
+            catch
+            {
+                foreach(string s in dialogues)
+                {
+                    Debug.Log(s);
+                }
+
+                foreach(string s in commandValue.Keys)
+                {
+                    Debug.Log(s);
+                }
+                Debug.Log(type.ToString());
+            }
             dialogues[i] = TextHelper.ReplaceTags(dialogues[i], GameDataManager.instance.GetStaringKey(), GameDataManager.instance.GetEndingKey(), commandValue);
         }
     }

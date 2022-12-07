@@ -1,7 +1,7 @@
 {
     "name": "Museo Nacional de Colombia",
     "description": "Creado en 1823, y es uno de los más antiguos de América. Ofrece a sus visitantes diecisiete salas de exposición permanente, en las cuales se exhiben alrededor de 2.500 obras y objetos, símbolos de la historia y el patrimonio nacional." ,
-    "piecesId": ["La Gioconda"] ,
+    "piecesId": ["Francisco de Paula Santander"] ,
     "location": "loation", 
     "id": "Museo Nacional de Colombia",
     "country": "Colombia",

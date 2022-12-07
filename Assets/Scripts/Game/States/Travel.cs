@@ -68,6 +68,7 @@ public class Travel : IState
                         //trigger game over
                         manager.GameLost = true;
                         manager.Traveling = false;
+                        GameStatesManager.setLoseByTimeText?.Invoke();
                     }
                     else
                     {

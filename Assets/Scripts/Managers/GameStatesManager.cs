@@ -68,6 +68,12 @@ public class GameStatesManager : MonoBehaviour
 
     public static Action activateCameraScrolling;
 
+    public static Action setWinText;
+
+    public static Action setLoseByTimeText;
+
+    public static Action<string> setLoseByRobberText;
+
     //misc variables
     private string npcName;
     private string placeName;

@@ -41,6 +41,9 @@ public class TravelUIDisplay : MonoBehaviour
     private TMP_Text countryText;
 
     [SerializeField]
+    private TMP_Text timeText;
+
+    [SerializeField]
     private Button backButton;
 
     public static Action activateTravelPanel;
@@ -167,7 +170,7 @@ public class TravelUIDisplay : MonoBehaviour
         b.onClick.AddListener(() => cityContainer.SetActive(false));
         b.onClick.AddListener(() => backButton.gameObject.SetActive(false));
         //b.onClick.AddListener(() => sitesTransform.gameObject.SetActive(false));
-        b.GetComponent<ButtonHoverManager>().SetParameters(value, value2,cityText, countryText, cityContainer);
+        b.GetComponent<ButtonHoverManager>().SetParameters(value, value2,cityText, countryText, timeText,cityContainer);
     }
 
     private void OnEnable()

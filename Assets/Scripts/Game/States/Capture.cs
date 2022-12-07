@@ -35,11 +35,13 @@ public class Capture : IState
             {
                 //win
                 manager.GameWon = true;
+                GameStatesManager.setWinText?.Invoke();
             }
             else
             {
                 //lose
                 manager.GameLost = true;
+                GameStatesManager.setLoseByRobberText?.Invoke(manager.GetRobberName());
             }
         }
     }

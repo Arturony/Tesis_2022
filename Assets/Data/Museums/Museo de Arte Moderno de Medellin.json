@@ -1,7 +1,7 @@
 {
     "name": "Museo de Arte Moderno de Medellin",
     "description": "El Museo del Oro del Banco de la República en Bogotá preserva colecciones arqueológicas que son patrimonio y orgullo de todos los colombianos." ,
-    "piecesId": ["La Gioconda"] ,
+    "piecesId": ["El Tren de la Muerte"] ,
     "location": "loation", 
     "id": "Museo de Arte Moderno de Medellin",
     "country": "Colombia",

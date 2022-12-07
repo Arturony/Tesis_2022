@@ -15,7 +15,7 @@ public class ArtPiecesManager : MonoBehaviour
 
     private async Task LoadAllPiecesAsync()
     {
-
+        string s1 = "";
         try
         {
             string path = System.IO.Directory.GetCurrentDirectory() + museumsPath;
@@ -23,6 +23,7 @@ public class ArtPiecesManager : MonoBehaviour
             IList<Task> writeTaskList = new List<Task>();
             foreach (string s in folder)
             {
+                s1 = s;
                 if (s.EndsWith(".json"))
                 {
                     string text = await FileUtil.ReadAllTextAsync(s);
@@ -35,6 +36,7 @@ public class ArtPiecesManager : MonoBehaviour
         catch (Exception e)
         {
             Debug.LogError(e.Message);
+            Debug.Log(s1);
         }
     }
 

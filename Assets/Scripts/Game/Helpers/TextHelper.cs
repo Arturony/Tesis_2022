@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,7 +38,7 @@ public class TextHelper
                 string value = "";
                 if (values.Count > 1)
                 {
-                    int indx = Random.Range(0, values.Count);
+                    int indx = UnityEngine.Random.Range(0, values.Count);
                     value = values[indx];
                     values.RemoveAt(indx);
 

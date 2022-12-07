@@ -14,10 +14,13 @@
       "Alguien estaba hablando de ir a [place] pero no sé donde queda, podrías decirme?",
       "Cómo sería vivir en [city]?",
       "A alguien se le cayeron unos tiquetes para [city], me pregunto por qué tendría tanta prisa",
-      "Una persona estaba pidiendo un taxi para porque quería ir a [place], aunque no creo que el taxi pueda llegar tan lejos"
+      "Una persona estaba pidiendo un taxi para porque quería ir a [place], aunque no creo que el taxi pueda llegar tan lejos.",
+      "Alguien me preguntó sobre [artPiece] de la nada. Bastante extraño, ¿No crees?",
+      "Una persona salió corriendo diciendo que la exposición de [artPiece] estaba por cerrar. Me pareció bastante exagerado.",
+      "¿Una guía sobre [artPiece]? Que curioso, alguien acaba de pedir lo mismo no hace mucho."
     ],
     "robber": [
-      "Vi a alguien [robber caminando por aquí hace poco. Se veía sospechoso.",
+      "Vi a alguien [robber] caminando por aquí hace poco. Se veía sospechoso.",
       "Vi a una persona [robber] actuando muy raro. Parecía que escondía algo.",
       "Alguien sospechoso? Ahora que lo pienso... un sujeto [robber] pasó caminando muy rápido",
       "Si vieron a esa persona [robber] que pasó corriendo? Casi me atropella",
