@@ -21,7 +21,7 @@ To run the game just simply clone the repository or download the zip file and ex
 
 The game was made using Unity 2019.4.25f1 which is a cross-platform game engine created and designed by Unity Technologies. The game was developed using states, which change depending on the selections of the user. We used Google Arts and Culture to extract and read information about the museums and art pieces that appear in the game. Check the website if you want to learn more: https://artsandculture.google.com/.
 
-All assets used in the game can be found in the "Assets" folder on the repository. Photos of art pieces and museums were extracted from Google Arts and Culture. Music and sprites are original to the game and were created by the team. 
+All assets used in the game can be found in the "Assets" folder on the repository. Photos of art pieces and museums were extracted from Google Arts and Culture. Music and sprites are original to the game and were created by the team. NPC and dossier's sprites were created using "The Character Creator" which is a free to use avatar designer. Check out their website: https://charactercreator.org/#
 
 # Modding Guide
 
