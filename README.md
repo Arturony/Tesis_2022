@@ -15,7 +15,7 @@ The main focus was to use real world data, extracted from Google Arts and Cultur
 
 # How to Run the Game
 
-To run the game just simply clone the repository or download the zip file and extract it. Then open "Defensor de la cultura.exe".
+To run the game just simply clone the repository or download the zip file and extract it. Then open "Defensor de la cultura.exe" inside tbe main folder. The game was built as an executable so it doesn't require to be opened with the Unity editor to play.
 
 # Technology Used
 
