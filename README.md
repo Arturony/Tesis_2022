@@ -1,5 +1,5 @@
 # Tesis 2022: DEFENSOR DE LA CULTURA
-Gabriel Santiago Serna, Camilo Otalora, Arturo Rubio
+## Gabriel Santiago Serna, Camilo Otalora, Arturo Rubio
 
 Proyect Developed with Unity 2019.4.25f1 and Python 3.9.10. <br>
 Data extracted with a script from Google Arts & Culture: https://artsandculture.google.com/
